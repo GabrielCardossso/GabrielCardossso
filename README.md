@@ -1,3 +1,5 @@
+<img width="100%" src="https://capsule-render.vercel.app/api?type=waving&color=0:4B0082,100:8A2BE2&height=180&section=header&text=Gabriel%20Cardoso&fontSize=40&fontColor=fff&animation=fadeIn"/>
+
 <h1 align="center">Gabriel Cardoso 👨‍💻</h1>
 
 <p align="center">
