@@ -1,4 +1,4 @@
-<img width="100%" src="https://capsule-render.vercel.app/api?type=waving&color=0:4B0082,100:8A2BE2&height=120&section=header"/>
+<img width="100%" src="https://capsule-render.vercel.app/api?type=waving&color=0:00BFFF,100:0066FF&height=120&section=header"/>
 
 <h1 align="center">Gabriel Cardoso 👨‍💻</h1>
 
@@ -42,4 +42,4 @@ Estudante de Desenvolvimento de Sistemas
 
 ---
 
-<img width="100%" src="https://capsule-render.vercel.app/api?type=waving&color=0:4B0082,100:8A2BE2&height=120&section=footer"/>
+<img width="100%" src="https://capsule-render.vercel.app/api?type=waving&color=0:00BFFF,100:0066FF&height=120&section=footer"/>
