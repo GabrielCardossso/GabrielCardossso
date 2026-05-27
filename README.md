@@ -1,16 +1,44 @@
-## Hi there 👋
+<h1 align="center">Gabriel Cardoso 👨‍💻</h1>
 
-<!--
-**GabrielCardossso/GabrielCardossso** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
+<p align="center">
+Estudante de Desenvolvimento de Sistemas
+</p>
 
-Here are some ideas to get you started:
+---
 
-- 🔭 I’m currently working on ...
-- 🌱 I’m currently learning ...
-- 👯 I’m looking to collaborate on ...
-- 🤔 I’m looking for help with ...
-- 💬 Ask me about ...
-- 📫 How to reach me: ...
-- 😄 Pronouns: ...
-- ⚡ Fun fact: ...
--->
+## 💡 Sobre mim
+
+🎓 Estudante de Desenvolvimento de Sistemas no SENAC   
+🚀 Desenvolvendo projetos para evoluir constantemente na área da tecnologia  
+📚 Sempre buscando aprender novas tecnologias e boas práticas  
+
+---
+
+## 🚀 Tecnologias
+
+<p>
+  <img src="https://skillicons.dev/icons?i=html,css,js,java,postgres,git,github,vscode" />
+</p>
+
+---
+
+## 📌 Projetos
+
+- 🧮 Calculadora Web
+- ✅ Lista de Tarefas
+- 📚 ArquivosCursoTecSenac
+
+---
+
+## 📫 Contato
+
+- LinkedIn: www.linkedin.com/in/gabrielcardossso
+- Email: gabrielcardossso@gmail.com
+
+---
+
+## 📊 GitHub Stats
+
+![Gabriel GitHub stats](https://github-readme-stats.vercel.app/api?username=GabrielCardossso&show_icons=true&theme=dark)
+
+![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=GabrielCardossso&layout=compact&theme=dark)
