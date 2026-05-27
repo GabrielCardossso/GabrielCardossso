@@ -12,6 +12,24 @@ Estudante de Desenvolvimento de Sistemas
 🚀 Desenvolvendo projetos para evoluir constantemente na área da tecnologia  
 📚 Sempre buscando aprender novas tecnologias e boas práticas  
 
+<p align="center">
+  <a href="mailto:gabrielcardossso@gmail.com">
+    <img src="https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white" />
+  </a>
+
+  <a href="https://www.linkedin.com/in/gabriel-cardoso-72a9883b0/">
+    <img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" />
+  </a>
+
+  <a href="https://instagram.com/SEUUSER">
+    <img src="https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white" />
+  </a>
+
+  <a href="https://wa.me/5548991746960">
+    <img src="https://img.shields.io/badge/WhatsApp-25D366?style=for-the-badge&logo=whatsapp&logoColor=white" />
+  </a>
+</p>
+
 ---
 
 ## 🚀 Tecnologias
@@ -28,17 +46,4 @@ Estudante de Desenvolvimento de Sistemas
 - ✅ Lista de Tarefas
 - 📚 ArquivosCursoTecSenac
 
----
-
-## 📫 Contato
-
-- LinkedIn: www.linkedin.com/in/gabrielcardossso
-- Email: gabrielcardossso@gmail.com
-
----
-
-## 📊 GitHub Stats
-
-![Gabriel GitHub stats](https://github-readme-stats.vercel.app/api?username=GabrielCardossso&show_icons=true&theme=dark)
-
-![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=GabrielCardossso&layout=compact&theme=dark)
+<img width="100%" src="https://capsule-render.vercel.app/api?type=waving&color=0:4B0082,100:8A2BE2&height=120&section=footer"/>
