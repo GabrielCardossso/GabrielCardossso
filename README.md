@@ -7,8 +7,8 @@
 Desenvolvedor **Full Stack** na **Getel Tecnologia**, onde construo sistemas de gestão de ponta a ponta, do modelo de dados à interface. No back-end, trabalho no dia a dia com **Node.js e NestJS**, além de **Java e Spring Boot**; no front, com **TypeScript, React e Next.js**. Uso IA (**Claude** e **ChatGPT**) como parte do meu fluxo de desenvolvimento. Gosto de software que resolve problema de negócio de verdade: ERPs, CRMs, controle de ponto e estoque.
 
 - 🏢 &nbsp;Full Stack Developer @ **Getel Tecnologia**
-- 🎓 &nbsp;Cursando **Técnico em Desenvolvimento de Sistemas** no SENAC
-- 🚀 &nbsp;Projetos pessoais: [**EsteticaFlow**](https://github.com/GabrielCardossso/esteticaFlow) (ERP SaaS para estética automotiva) e [**HoraControl**](https://github.com/GabrielCardossso/HoraControl) (controle de ponto com Spring Security)
+- 🎓 &nbsp;Cursando **Técnico em Desenvolvimento de Sistemas** no SENAC, onde desenvolvi o [**HoraControl**](https://github.com/GabrielCardossso/HoraControl) (controle de ponto com Spring Security)
+- 🚀 &nbsp;Projeto pessoal: [**EsteticaFlow**](https://github.com/GabrielCardossso/esteticaFlow) (ERP SaaS para estética automotiva)
 - 📍 &nbsp;Tubarão · SC · Brasil
 
 ## ◢ Stack
