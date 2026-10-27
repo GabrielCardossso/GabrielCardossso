@@ -302,16 +302,16 @@ function footer() {
   const width = 1200;
   const height = 150;
   const left = [
-    [[-10, 58], [524, 58]],
-    [[-10, 22], [400, 22], [424, 46], [524, 46]],
-    [[-10, 96], [400, 96], [424, 70], [524, 70]],
+    [[-10, 58], [470, 58]],
+    [[-10, 22], [346, 22], [370, 46], [470, 46]],
+    [[-10, 96], [346, 96], [370, 70], [470, 70]],
   ];
-  const message = 'obrigado pela visita · bora construir algo juntos';
+  const message = 'Bora construir algo juntos';
   const body = `<ellipse cx="600" cy="58" rx="300" ry="90" fill="url(#halo)"/>
 ${circuit(left, width, 21)}
-<rect x="524" y="34" width="152" height="48" rx="10" fill="#031024" stroke="${C.cyan}" stroke-width="1.5" filter="url(#neon)"><animate attributeName="stroke-opacity" values="1;.4;1" dur="3s" repeatCount="indefinite"/></rect>
-<text x="600" y="67" text-anchor="middle" class="sans" font-size="24" font-weight="800" letter-spacing="6" fill="url(#shine)">GC</text>
-<text x="600" y="126" text-anchor="middle" class="mono" font-size="15" fill="${C.inkSoft}" textLength="${monoWidth(message, 15)}">${esc(message)}</text>`;
+<rect x="470" y="34" width="260" height="48" rx="10" fill="#031024" stroke="${C.cyan}" stroke-width="1.5" filter="url(#neon)"><animate attributeName="stroke-opacity" values="1;.4;1" dur="3s" repeatCount="indefinite"/></rect>
+<text x="505" y="67" class="sans" font-size="24" font-weight="800" textLength="190" fill="url(#shine)">OBRIGADO</text>
+<text x="600" y="126" text-anchor="middle" class="mono" font-size="16" fill="${C.inkSoft}" textLength="${monoWidth(message, 16)}">${esc(message)}</text>`;
   return frame(width, height, { title: 'Rodapé', desc: message }, body);
 }
 

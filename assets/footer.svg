@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="150" viewBox="0 0 1200 150" role="img" aria-labelledby="title desc">
 <title id="title">Rodapé</title>
-<desc id="desc">obrigado pela visita · bora construir algo juntos</desc>
+<desc id="desc">Bora construir algo juntos</desc>
 <style>
 .sans{font-family:'Segoe UI', Inter, 'Helvetica Neue', Arial, sans-serif}
 .mono{font-family:'JetBrains Mono', 'Cascadia Code', 'Fira Code', Consolas, 'Courier New', monospace}
@@ -32,33 +32,33 @@
 <rect width="1200" height="150" fill="url(#bg)"/>
 <rect width="1200" height="150" fill="url(#grid)"/>
 <ellipse cx="600" cy="58" rx="300" ry="90" fill="url(#halo)"/>
-<path d="M-10 58 L524 58" class="wire"/>
-<path d="M-10 58 L524 58" class="pulse" filter="url(#neon)" stroke-dasharray="70 604" stroke-dashoffset="70"><animate attributeName="stroke-dashoffset" values="70;-534" dur="4.3s" begin="-1.9s" repeatCount="indefinite"/></path>
-<circle cx="524" cy="58" r="5" class="node"/>
-<circle cx="524" cy="58" r="2.2" fill="#a5f3fc"><animate attributeName="opacity" values=".25;.25;1;.25" keyTimes="0;.8;.92;1" dur="4.3s" begin="-1.9s" repeatCount="indefinite"/></circle>
-<path d="M-10 22 L400 22 L424 46 L524 46" class="wire"/>
-<path d="M-10 22 L400 22 L424 46 L524 46" class="pulse" filter="url(#neon)" stroke-dasharray="70 613.9" stroke-dashoffset="70"><animate attributeName="stroke-dashoffset" values="70;-543.9" dur="3.8s" begin="-1.5s" repeatCount="indefinite"/></path>
-<circle cx="524" cy="46" r="5" class="node"/>
-<circle cx="524" cy="46" r="2.2" fill="#a5f3fc"><animate attributeName="opacity" values=".25;.25;1;.25" keyTimes="0;.8;.92;1" dur="3.8s" begin="-1.5s" repeatCount="indefinite"/></circle>
-<path d="M-10 96 L400 96 L424 70 L524 70" class="wire"/>
-<path d="M-10 96 L400 96 L424 70 L524 70" class="pulse" filter="url(#neon)" stroke-dasharray="70 615.4" stroke-dashoffset="70"><animate attributeName="stroke-dashoffset" values="70;-545.4" dur="4.4s" begin="-3.9s" repeatCount="indefinite"/></path>
-<circle cx="524" cy="70" r="5" class="node"/>
-<circle cx="524" cy="70" r="2.2" fill="#a5f3fc"><animate attributeName="opacity" values=".25;.25;1;.25" keyTimes="0;.8;.92;1" dur="4.4s" begin="-3.9s" repeatCount="indefinite"/></circle>
-<path d="M1210 58 L676 58" class="wire"/>
-<path d="M1210 58 L676 58" class="pulse" filter="url(#neon)" stroke-dasharray="70 604" stroke-dashoffset="70"><animate attributeName="stroke-dashoffset" values="70;-534" dur="5.6s" begin="-1.9s" repeatCount="indefinite"/></path>
-<circle cx="676" cy="58" r="5" class="node"/>
-<circle cx="676" cy="58" r="2.2" fill="#a5f3fc"><animate attributeName="opacity" values=".25;.25;1;.25" keyTimes="0;.8;.92;1" dur="5.6s" begin="-1.9s" repeatCount="indefinite"/></circle>
-<path d="M1210 22 L800 22 L776 46 L676 46" class="wire"/>
-<path d="M1210 22 L800 22 L776 46 L676 46" class="pulse" filter="url(#neon)" stroke-dasharray="70 613.9" stroke-dashoffset="70"><animate attributeName="stroke-dashoffset" values="70;-543.9" dur="4.3s" begin="-3.3s" repeatCount="indefinite"/></path>
-<circle cx="676" cy="46" r="5" class="node"/>
-<circle cx="676" cy="46" r="2.2" fill="#a5f3fc"><animate attributeName="opacity" values=".25;.25;1;.25" keyTimes="0;.8;.92;1" dur="4.3s" begin="-3.3s" repeatCount="indefinite"/></circle>
-<path d="M1210 96 L800 96 L776 70 L676 70" class="wire"/>
-<path d="M1210 96 L800 96 L776 70 L676 70" class="pulse" filter="url(#neon)" stroke-dasharray="70 615.4" stroke-dashoffset="70"><animate attributeName="stroke-dashoffset" values="70;-545.4" dur="3.6s" begin="-1.2s" repeatCount="indefinite"/></path>
-<circle cx="676" cy="70" r="5" class="node"/>
-<circle cx="676" cy="70" r="2.2" fill="#a5f3fc"><animate attributeName="opacity" values=".25;.25;1;.25" keyTimes="0;.8;.92;1" dur="3.6s" begin="-1.2s" repeatCount="indefinite"/></circle>
-<rect x="524" y="34" width="152" height="48" rx="10" fill="#031024" stroke="#22d3ee" stroke-width="1.5" filter="url(#neon)"><animate attributeName="stroke-opacity" values="1;.4;1" dur="3s" repeatCount="indefinite"/></rect>
-<text x="600" y="67" text-anchor="middle" class="sans" font-size="24" font-weight="800" letter-spacing="6" fill="url(#shine)">GC</text>
-<text x="600" y="126" text-anchor="middle" class="mono" font-size="15" fill="#9cc9ea" textLength="441">obrigado pela visita · bora construir algo juntos</text>
+<path d="M-10 58 L470 58" class="wire"/>
+<path d="M-10 58 L470 58" class="pulse" filter="url(#neon)" stroke-dasharray="70 550" stroke-dashoffset="70"><animate attributeName="stroke-dashoffset" values="70;-480" dur="4.3s" begin="-1.9s" repeatCount="indefinite"/></path>
+<circle cx="470" cy="58" r="5" class="node"/>
+<circle cx="470" cy="58" r="2.2" fill="#a5f3fc"><animate attributeName="opacity" values=".25;.25;1;.25" keyTimes="0;.8;.92;1" dur="4.3s" begin="-1.9s" repeatCount="indefinite"/></circle>
+<path d="M-10 22 L346 22 L370 46 L470 46" class="wire"/>
+<path d="M-10 22 L346 22 L370 46 L470 46" class="pulse" filter="url(#neon)" stroke-dasharray="70 559.9" stroke-dashoffset="70"><animate attributeName="stroke-dashoffset" values="70;-489.9" dur="3.8s" begin="-1.5s" repeatCount="indefinite"/></path>
+<circle cx="470" cy="46" r="5" class="node"/>
+<circle cx="470" cy="46" r="2.2" fill="#a5f3fc"><animate attributeName="opacity" values=".25;.25;1;.25" keyTimes="0;.8;.92;1" dur="3.8s" begin="-1.5s" repeatCount="indefinite"/></circle>
+<path d="M-10 96 L346 96 L370 70 L470 70" class="wire"/>
+<path d="M-10 96 L346 96 L370 70 L470 70" class="pulse" filter="url(#neon)" stroke-dasharray="70 561.4" stroke-dashoffset="70"><animate attributeName="stroke-dashoffset" values="70;-491.4" dur="4.4s" begin="-3.9s" repeatCount="indefinite"/></path>
+<circle cx="470" cy="70" r="5" class="node"/>
+<circle cx="470" cy="70" r="2.2" fill="#a5f3fc"><animate attributeName="opacity" values=".25;.25;1;.25" keyTimes="0;.8;.92;1" dur="4.4s" begin="-3.9s" repeatCount="indefinite"/></circle>
+<path d="M1210 58 L730 58" class="wire"/>
+<path d="M1210 58 L730 58" class="pulse" filter="url(#neon)" stroke-dasharray="70 550" stroke-dashoffset="70"><animate attributeName="stroke-dashoffset" values="70;-480" dur="5.6s" begin="-1.9s" repeatCount="indefinite"/></path>
+<circle cx="730" cy="58" r="5" class="node"/>
+<circle cx="730" cy="58" r="2.2" fill="#a5f3fc"><animate attributeName="opacity" values=".25;.25;1;.25" keyTimes="0;.8;.92;1" dur="5.6s" begin="-1.9s" repeatCount="indefinite"/></circle>
+<path d="M1210 22 L854 22 L830 46 L730 46" class="wire"/>
+<path d="M1210 22 L854 22 L830 46 L730 46" class="pulse" filter="url(#neon)" stroke-dasharray="70 559.9" stroke-dashoffset="70"><animate attributeName="stroke-dashoffset" values="70;-489.9" dur="4.3s" begin="-3.3s" repeatCount="indefinite"/></path>
+<circle cx="730" cy="46" r="5" class="node"/>
+<circle cx="730" cy="46" r="2.2" fill="#a5f3fc"><animate attributeName="opacity" values=".25;.25;1;.25" keyTimes="0;.8;.92;1" dur="4.3s" begin="-3.3s" repeatCount="indefinite"/></circle>
+<path d="M1210 96 L854 96 L830 70 L730 70" class="wire"/>
+<path d="M1210 96 L854 96 L830 70 L730 70" class="pulse" filter="url(#neon)" stroke-dasharray="70 561.4" stroke-dashoffset="70"><animate attributeName="stroke-dashoffset" values="70;-491.4" dur="3.6s" begin="-1.2s" repeatCount="indefinite"/></path>
+<circle cx="730" cy="70" r="5" class="node"/>
+<circle cx="730" cy="70" r="2.2" fill="#a5f3fc"><animate attributeName="opacity" values=".25;.25;1;.25" keyTimes="0;.8;.92;1" dur="3.6s" begin="-1.2s" repeatCount="indefinite"/></circle>
+<rect x="470" y="34" width="260" height="48" rx="10" fill="#031024" stroke="#22d3ee" stroke-width="1.5" filter="url(#neon)"><animate attributeName="stroke-opacity" values="1;.4;1" dur="3s" repeatCount="indefinite"/></rect>
+<text x="505" y="67" class="sans" font-size="24" font-weight="800" textLength="190" fill="url(#shine)">OBRIGADO</text>
+<text x="600" y="126" text-anchor="middle" class="mono" font-size="16" fill="#9cc9ea" textLength="249.6">Bora construir algo juntos</text>
 </g>
 <rect x=".5" y=".5" width="1199" height="149" rx="23.5" fill="none" stroke="#0e2f4f"/>
 </svg>
