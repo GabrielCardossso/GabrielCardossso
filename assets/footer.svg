@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="150" viewBox="0 0 1200 150" role="img" aria-labelledby="title desc">
+<title id="title">Rodapé</title>
+<desc id="desc">obrigado pela visita · bora construir algo juntos</desc>
+<style>
+.sans{font-family:'Segoe UI', Inter, 'Helvetica Neue', Arial, sans-serif}
+.mono{font-family:'JetBrains Mono', 'Cascadia Code', 'Fira Code', Consolas, 'Courier New', monospace}
+.wire{fill:none;stroke:#0f3354;stroke-width:2;stroke-linejoin:round;stroke-linecap:round}
+.pulse{fill:none;stroke:#67e8f9;stroke-width:2.6;stroke-linecap:round}
+.node{fill:#020817;stroke:#22d3ee;stroke-width:2}
+</style>
+<defs>
+<linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+<stop offset="0" stop-color="#020817"/><stop offset=".55" stop-color="#04122a"/><stop offset="1" stop-color="#071c3a"/>
+</linearGradient>
+<pattern id="grid" width="32" height="32" patternUnits="userSpaceOnUse">
+<path d="M32 0H0V32" fill="none" stroke="#38bdf8" stroke-opacity=".07"/>
+</pattern>
+<radialGradient id="halo"><stop offset="0" stop-color="#0ea5e9" stop-opacity=".22"/><stop offset="1" stop-color="#0ea5e9" stop-opacity="0"/></radialGradient>
+<linearGradient id="sweep" x1="0" x2="1"><stop offset="0" stop-color="#67e8f9" stop-opacity="0"/><stop offset=".5" stop-color="#67e8f9"/><stop offset="1" stop-color="#67e8f9" stop-opacity="0"/></linearGradient>
+<linearGradient id="fade" x1="0" x2="1"><stop offset="0" stop-color="#1e4b75" stop-opacity="0"/><stop offset=".5" stop-color="#1e4b75"/><stop offset="1" stop-color="#1e4b75" stop-opacity="0"/></linearGradient>
+<linearGradient id="shine" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="640" y2="0" spreadMethod="repeat">
+<stop offset="0" stop-color="#38bdf8"/><stop offset=".3" stop-color="#a5f3fc"/><stop offset=".5" stop-color="#ffffff"/><stop offset=".7" stop-color="#a5f3fc"/><stop offset="1" stop-color="#38bdf8"/>
+<animateTransform attributeName="gradientTransform" type="translate" from="0 0" to="640 0" dur="6s" repeatCount="indefinite"/>
+</linearGradient>
+<filter id="neon" filterUnits="userSpaceOnUse" x="0" y="0" width="1200" height="150">
+<feGaussianBlur stdDeviation="3" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+</filter>
+<filter id="bloom" filterUnits="userSpaceOnUse" x="0" y="0" width="1200" height="150"><feGaussianBlur stdDeviation="14"/></filter>
+<clipPath id="card"><rect width="1200" height="150" rx="24"/></clipPath>
+</defs>
+<g clip-path="url(#card)">
+<rect width="1200" height="150" fill="url(#bg)"/>
+<rect width="1200" height="150" fill="url(#grid)"/>
+<ellipse cx="600" cy="58" rx="300" ry="90" fill="url(#halo)"/>
+<path d="M-10 58 L524 58" class="wire"/>
+<path d="M-10 58 L524 58" class="pulse" filter="url(#neon)" stroke-dasharray="70 604" stroke-dashoffset="70"><animate attributeName="stroke-dashoffset" values="70;-534" dur="4.3s" begin="-1.9s" repeatCount="indefinite"/></path>
+<circle cx="524" cy="58" r="5" class="node"/>
+<circle cx="524" cy="58" r="2.2" fill="#a5f3fc"><animate attributeName="opacity" values=".25;.25;1;.25" keyTimes="0;.8;.92;1" dur="4.3s" begin="-1.9s" repeatCount="indefinite"/></circle>
+<path d="M-10 22 L400 22 L424 46 L524 46" class="wire"/>
+<path d="M-10 22 L400 22 L424 46 L524 46" class="pulse" filter="url(#neon)" stroke-dasharray="70 613.9" stroke-dashoffset="70"><animate attributeName="stroke-dashoffset" values="70;-543.9" dur="3.8s" begin="-1.5s" repeatCount="indefinite"/></path>
+<circle cx="524" cy="46" r="5" class="node"/>
+<circle cx="524" cy="46" r="2.2" fill="#a5f3fc"><animate attributeName="opacity" values=".25;.25;1;.25" keyTimes="0;.8;.92;1" dur="3.8s" begin="-1.5s" repeatCount="indefinite"/></circle>
+<path d="M-10 96 L400 96 L424 70 L524 70" class="wire"/>
+<path d="M-10 96 L400 96 L424 70 L524 70" class="pulse" filter="url(#neon)" stroke-dasharray="70 615.4" stroke-dashoffset="70"><animate attributeName="stroke-dashoffset" values="70;-545.4" dur="4.4s" begin="-3.9s" repeatCount="indefinite"/></path>
+<circle cx="524" cy="70" r="5" class="node"/>
+<circle cx="524" cy="70" r="2.2" fill="#a5f3fc"><animate attributeName="opacity" values=".25;.25;1;.25" keyTimes="0;.8;.92;1" dur="4.4s" begin="-3.9s" repeatCount="indefinite"/></circle>
+<path d="M1210 58 L676 58" class="wire"/>
+<path d="M1210 58 L676 58" class="pulse" filter="url(#neon)" stroke-dasharray="70 604" stroke-dashoffset="70"><animate attributeName="stroke-dashoffset" values="70;-534" dur="5.6s" begin="-1.9s" repeatCount="indefinite"/></path>
+<circle cx="676" cy="58" r="5" class="node"/>
+<circle cx="676" cy="58" r="2.2" fill="#a5f3fc"><animate attributeName="opacity" values=".25;.25;1;.25" keyTimes="0;.8;.92;1" dur="5.6s" begin="-1.9s" repeatCount="indefinite"/></circle>
+<path d="M1210 22 L800 22 L776 46 L676 46" class="wire"/>
+<path d="M1210 22 L800 22 L776 46 L676 46" class="pulse" filter="url(#neon)" stroke-dasharray="70 613.9" stroke-dashoffset="70"><animate attributeName="stroke-dashoffset" values="70;-543.9" dur="4.3s" begin="-3.3s" repeatCount="indefinite"/></path>
+<circle cx="676" cy="46" r="5" class="node"/>
+<circle cx="676" cy="46" r="2.2" fill="#a5f3fc"><animate attributeName="opacity" values=".25;.25;1;.25" keyTimes="0;.8;.92;1" dur="4.3s" begin="-3.3s" repeatCount="indefinite"/></circle>
+<path d="M1210 96 L800 96 L776 70 L676 70" class="wire"/>
+<path d="M1210 96 L800 96 L776 70 L676 70" class="pulse" filter="url(#neon)" stroke-dasharray="70 615.4" stroke-dashoffset="70"><animate attributeName="stroke-dashoffset" values="70;-545.4" dur="3.6s" begin="-1.2s" repeatCount="indefinite"/></path>
+<circle cx="676" cy="70" r="5" class="node"/>
+<circle cx="676" cy="70" r="2.2" fill="#a5f3fc"><animate attributeName="opacity" values=".25;.25;1;.25" keyTimes="0;.8;.92;1" dur="3.6s" begin="-1.2s" repeatCount="indefinite"/></circle>
+<rect x="524" y="34" width="152" height="48" rx="10" fill="#031024" stroke="#22d3ee" stroke-width="1.5" filter="url(#neon)"><animate attributeName="stroke-opacity" values="1;.4;1" dur="3s" repeatCount="indefinite"/></rect>
+<text x="600" y="67" text-anchor="middle" class="sans" font-size="24" font-weight="800" letter-spacing="6" fill="url(#shine)">GC</text>
+<text x="600" y="126" text-anchor="middle" class="mono" font-size="15" fill="#9cc9ea" textLength="441">obrigado pela visita · bora construir algo juntos</text>
+</g>
+<rect x=".5" y=".5" width="1199" height="149" rx="23.5" fill="none" stroke="#0e2f4f"/>
+</svg>

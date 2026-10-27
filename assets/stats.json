@@ -1,0 +1,53 @@
+{
+  "updatedAt": "2026-10-27",
+  "firstCommit": "2026-02-07",
+  "commits": 194,
+  "repositories": 13,
+  "linesWritten": 83163,
+  "languages": [
+    {
+      "name": "TypeScript",
+      "lines": 26675
+    },
+    {
+      "name": "Java",
+      "lines": 16627
+    },
+    {
+      "name": "CSS",
+      "lines": 9285
+    },
+    {
+      "name": "C#",
+      "lines": 8346
+    },
+    {
+      "name": "JavaScript",
+      "lines": 7245
+    },
+    {
+      "name": "HTML",
+      "lines": 7091
+    },
+    {
+      "name": "SQL",
+      "lines": 4591
+    },
+    {
+      "name": "Portugol",
+      "lines": 2456
+    },
+    {
+      "name": "Python",
+      "lines": 512
+    },
+    {
+      "name": "PowerShell",
+      "lines": 232
+    },
+    {
+      "name": "Shell",
+      "lines": 103
+    }
+  ]
+}

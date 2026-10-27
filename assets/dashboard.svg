@@ -1,0 +1,160 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="644" viewBox="0 0 1200 644" role="img" aria-labelledby="title desc">
+<title id="title">Code DNA — top 5 linguagens de Gabriel Cardoso</title>
+<desc id="desc">1. TypeScript: 32,1% (26.675 linhas); 2. Java: 20,0% (16.627 linhas); 3. CSS: 11,2% (9.285 linhas); 4. C#: 10,0% (8.346 linhas); 5. JavaScript: 8,7% (7.245 linhas)</desc>
+<style>
+.sans{font-family:'Segoe UI', Inter, 'Helvetica Neue', Arial, sans-serif}
+.mono{font-family:'JetBrains Mono', 'Cascadia Code', 'Fira Code', Consolas, 'Courier New', monospace}
+.wire{fill:none;stroke:#0f3354;stroke-width:2;stroke-linejoin:round;stroke-linecap:round}
+.pulse{fill:none;stroke:#67e8f9;stroke-width:2.6;stroke-linecap:round}
+.node{fill:#020817;stroke:#22d3ee;stroke-width:2}
+</style>
+<defs>
+<linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+<stop offset="0" stop-color="#020817"/><stop offset=".55" stop-color="#04122a"/><stop offset="1" stop-color="#071c3a"/>
+</linearGradient>
+<pattern id="grid" width="32" height="32" patternUnits="userSpaceOnUse">
+<path d="M32 0H0V32" fill="none" stroke="#38bdf8" stroke-opacity=".07"/>
+</pattern>
+<radialGradient id="halo"><stop offset="0" stop-color="#0ea5e9" stop-opacity=".22"/><stop offset="1" stop-color="#0ea5e9" stop-opacity="0"/></radialGradient>
+<linearGradient id="sweep" x1="0" x2="1"><stop offset="0" stop-color="#67e8f9" stop-opacity="0"/><stop offset=".5" stop-color="#67e8f9"/><stop offset="1" stop-color="#67e8f9" stop-opacity="0"/></linearGradient>
+<linearGradient id="fade" x1="0" x2="1"><stop offset="0" stop-color="#1e4b75" stop-opacity="0"/><stop offset=".5" stop-color="#1e4b75"/><stop offset="1" stop-color="#1e4b75" stop-opacity="0"/></linearGradient>
+<linearGradient id="shine" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="640" y2="0" spreadMethod="repeat">
+<stop offset="0" stop-color="#38bdf8"/><stop offset=".3" stop-color="#a5f3fc"/><stop offset=".5" stop-color="#ffffff"/><stop offset=".7" stop-color="#a5f3fc"/><stop offset="1" stop-color="#38bdf8"/>
+<animateTransform attributeName="gradientTransform" type="translate" from="0 0" to="640 0" dur="6s" repeatCount="indefinite"/>
+</linearGradient>
+<filter id="neon" filterUnits="userSpaceOnUse" x="0" y="0" width="1200" height="644">
+<feGaussianBlur stdDeviation="3" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+</filter>
+<filter id="bloom" filterUnits="userSpaceOnUse" x="0" y="0" width="1200" height="644"><feGaussianBlur stdDeviation="14"/></filter>
+<clipPath id="card"><rect width="1200" height="644" rx="24"/></clipPath>
+</defs>
+<g clip-path="url(#card)">
+<rect width="1200" height="644" fill="url(#bg)"/>
+<rect width="1200" height="644" fill="url(#grid)"/>
+<defs>
+<linearGradient id="barFill" x1="0" x2="1"><stop offset="0" stop-color="#0369a1"/><stop offset=".6" stop-color="#0ea5e9"/><stop offset="1" stop-color="#22d3ee"/></linearGradient>
+<linearGradient id="sheen" x1="0" x2="1"><stop offset="0" stop-color="#ffffff" stop-opacity="0"/><stop offset=".5" stop-color="#ffffff" stop-opacity=".55"/><stop offset="1" stop-color="#ffffff" stop-opacity="0"/></linearGradient>
+</defs>
+<ellipse cx="300" cy="80" rx="520" ry="200" fill="url(#halo)" opacity=".7"/>
+<circle cx="250.5" cy="521.6" r="1.8" fill="#7dd3fc" opacity="0"><animate attributeName="cy" values="521.6;481.6" dur="5.9s" begin="-4.8s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;.8;0" dur="5.9s" begin="-4.8s" repeatCount="indefinite"/></circle>
+<circle cx="819.1" cy="195.5" r="1.7" fill="#7dd3fc" opacity="0"><animate attributeName="cy" values="195.5;155.5" dur="10.5s" begin="-1.4s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;.8;0" dur="10.5s" begin="-1.4s" repeatCount="indefinite"/></circle>
+<circle cx="829.7" cy="375.4" r="1.2" fill="#7dd3fc" opacity="0"><animate attributeName="cy" values="375.4;335.4" dur="6.7s" begin="-6.3s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;.8;0" dur="6.7s" begin="-6.3s" repeatCount="indefinite"/></circle>
+<circle cx="867.1" cy="405.7" r="2.1" fill="#7dd3fc" opacity="0"><animate attributeName="cy" values="405.7;365.7" dur="7.2s" begin="-3.9s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;.8;0" dur="7.2s" begin="-3.9s" repeatCount="indefinite"/></circle>
+<circle cx="1024" cy="302.3" r="1.7" fill="#7dd3fc" opacity="0"><animate attributeName="cy" values="302.3;262.3" dur="10.2s" begin="-1.9s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;.8;0" dur="10.2s" begin="-1.9s" repeatCount="indefinite"/></circle>
+<circle cx="406.9" cy="76.6" r="1.5" fill="#7dd3fc" opacity="0"><animate attributeName="cy" values="76.6;36.6" dur="10.3s" begin="-2.1s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;.8;0" dur="10.3s" begin="-2.1s" repeatCount="indefinite"/></circle>
+<circle cx="593.1" cy="91.4" r="1.1" fill="#7dd3fc" opacity="0"><animate attributeName="cy" values="91.4;51.4" dur="10s" begin="-7s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;.8;0" dur="10s" begin="-7s" repeatCount="indefinite"/></circle>
+<circle cx="99.3" cy="320.8" r="1.2" fill="#7dd3fc" opacity="0"><animate attributeName="cy" values="320.8;280.8" dur="6.9s" begin="-4.5s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;.8;0" dur="6.9s" begin="-4.5s" repeatCount="indefinite"/></circle>
+<circle cx="661.9" cy="580.2" r="1.5" fill="#7dd3fc" opacity="0"><animate attributeName="cy" values="580.2;540.2" dur="8.4s" begin="-1.3s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;.8;0" dur="8.4s" begin="-1.3s" repeatCount="indefinite"/></circle>
+<circle cx="397.4" cy="347.4" r="1.7" fill="#7dd3fc" opacity="0"><animate attributeName="cy" values="347.4;307.4" dur="9.8s" begin="-5.7s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;.8;0" dur="9.8s" begin="-5.7s" repeatCount="indefinite"/></circle>
+<circle cx="638.9" cy="413.8" r="2.1" fill="#7dd3fc" opacity="0"><animate attributeName="cy" values="413.8;373.8" dur="8s" begin="-1.4s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;.8;0" dur="8s" begin="-1.4s" repeatCount="indefinite"/></circle>
+<circle cx="712.4" cy="405.2" r="2.2" fill="#7dd3fc" opacity="0"><animate attributeName="cy" values="405.2;365.2" dur="8.3s" begin="-5.5s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;.8;0" dur="8.3s" begin="-5.5s" repeatCount="indefinite"/></circle>
+<circle cx="1084.3" cy="61.9" r="1.7" fill="#7dd3fc" opacity="0"><animate attributeName="cy" values="61.9;21.9" dur="9.4s" begin="-0.9s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;.8;0" dur="9.4s" begin="-0.9s" repeatCount="indefinite"/></circle>
+<circle cx="762.5" cy="590.1" r="1.9" fill="#7dd3fc" opacity="0"><animate attributeName="cy" values="590.1;550.1" dur="9.4s" begin="-8.5s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;.8;0" dur="9.4s" begin="-8.5s" repeatCount="indefinite"/></circle>
+<polygon points="48,74 70,74 70,52" fill="#22d3ee" filter="url(#neon)"/>
+<text x="84" y="74" class="sans" font-size="30" font-weight="700" fill="#e6f6ff">Code DNA</text>
+<text x="48" y="102" class="mono" font-size="15" fill="#9cc9ea">linhas que eu escrevi, extraídas de 194 commits em 13 repositórios</text>
+<circle cx="950.8" cy="66" r="4" fill="#22d3ee" filter="url(#neon)"><animate attributeName="opacity" values="1;.25;1" dur="1.6s" repeatCount="indefinite"/></circle>
+<text x="1152" y="70" text-anchor="end" class="mono" font-size="13" fill="#6b8bab">atualizado em 27/10/2026</text>
+<g transform="translate(48 128)">
+<animate attributeName="opacity" values="0;0;1" keyTimes="0;0.1;1" dur="0.7s" fill="freeze"/>
+<rect width="264" height="112" rx="14" fill="#041327" stroke="#0e2f4f"/>
+<rect x="0" y="22" width="3" height="68" rx="1.5" fill="#22d3ee" filter="url(#neon)"/>
+<path d="M218 18 H234 L244 28 V40" class="wire"/>
+<circle cx="244" cy="44" r="3.5" class="node"><animate attributeName="stroke-opacity" values="1;.3;1" dur="2s" repeatCount="indefinite"/></circle>
+<text x="24" y="32" class="mono" font-size="13" letter-spacing="2" fill="#9cc9ea">COMMITS</text>
+<text x="24" y="76" class="sans" font-size="38" font-weight="700" fill="#e6f6ff">194</text>
+<text x="24" y="98" class="mono" font-size="13" fill="#6b8bab">desde fev/2026</text>
+</g>
+<g transform="translate(328 128)">
+<animate attributeName="opacity" values="0;0;1" keyTimes="0;0.3;1" dur="0.8s" fill="freeze"/>
+<rect width="264" height="112" rx="14" fill="#041327" stroke="#0e2f4f"/>
+<rect x="0" y="22" width="3" height="68" rx="1.5" fill="#22d3ee" filter="url(#neon)"/>
+<path d="M218 18 H234 L244 28 V40" class="wire"/>
+<circle cx="244" cy="44" r="3.5" class="node"><animate attributeName="stroke-opacity" values="1;.3;1" dur="2.4s" repeatCount="indefinite"/></circle>
+<text x="24" y="32" class="mono" font-size="13" letter-spacing="2" fill="#9cc9ea">REPOSITÓRIOS</text>
+<text x="24" y="76" class="sans" font-size="38" font-weight="700" fill="#e6f6ff">13</text>
+<text x="24" y="98" class="mono" font-size="13" fill="#6b8bab">pessoais e da empresa</text>
+</g>
+<g transform="translate(608 128)">
+<animate attributeName="opacity" values="0;0;1" keyTimes="0;0.3;1" dur="0.9s" fill="freeze"/>
+<rect width="264" height="112" rx="14" fill="#041327" stroke="#0e2f4f"/>
+<rect x="0" y="22" width="3" height="68" rx="1.5" fill="#22d3ee" filter="url(#neon)"/>
+<path d="M218 18 H234 L244 28 V40" class="wire"/>
+<circle cx="244" cy="44" r="3.5" class="node"><animate attributeName="stroke-opacity" values="1;.3;1" dur="2.8s" repeatCount="indefinite"/></circle>
+<text x="24" y="32" class="mono" font-size="13" letter-spacing="2" fill="#9cc9ea">LINHAS ESCRITAS</text>
+<text x="24" y="76" class="sans" font-size="38" font-weight="700" fill="#e6f6ff">83,2 mil</text>
+<text x="24" y="98" class="mono" font-size="13" fill="#6b8bab">código autoral</text>
+</g>
+<g transform="translate(888 128)">
+<animate attributeName="opacity" values="0;0;1" keyTimes="0;0.5;1" dur="1.1s" fill="freeze"/>
+<rect width="264" height="112" rx="14" fill="#041327" stroke="#0e2f4f"/>
+<rect x="0" y="22" width="3" height="68" rx="1.5" fill="#22d3ee" filter="url(#neon)"/>
+<path d="M218 18 H234 L244 28 V40" class="wire"/>
+<circle cx="244" cy="44" r="3.5" class="node"><animate attributeName="stroke-opacity" values="1;.3;1" dur="3.2s" repeatCount="indefinite"/></circle>
+<text x="24" y="32" class="mono" font-size="13" letter-spacing="2" fill="#9cc9ea">LINGUAGENS</text>
+<text x="24" y="76" class="sans" font-size="38" font-weight="700" fill="#e6f6ff">11</text>
+<text x="24" y="98" class="mono" font-size="13" fill="#6b8bab">com commits meus</text>
+</g>
+<text x="48" y="290" class="mono" font-size="14" font-weight="700" letter-spacing="3" fill="#22d3ee">TOP 5 LINGUAGENS</text>
+<text x="1152" y="290" text-anchor="end" class="mono" font-size="13" fill="#6b8bab">% das linhas que escrevi · linhas</text>
+<rect x="48" y="304" width="1104" height="1" fill="#0e2f4f"/>
+<g>
+<text x="48" y="348" class="mono" font-size="17" font-weight="700" fill="#22d3ee">#1</text>
+<text x="96" y="349" class="sans" font-size="20" font-weight="600" fill="#e6f6ff">TypeScript</text>
+<rect x="300" y="336" width="640" height="12" rx="4" fill="#0a2140"/>
+<clipPath id="bar0"><rect x="300" y="336" width="640" height="12" rx="4"/></clipPath>
+<rect x="300" y="336" width="640" height="12" rx="4" fill="url(#barFill)"><animate attributeName="width" values="0;0;640" dur="1.6s" keyTimes="0;0.3;1" calcMode="spline" keySplines="0 0 1 1;.22 1 .36 1" fill="freeze"/></rect>
+<rect x="-200" y="336" width="120" height="12" fill="url(#sheen)" clip-path="url(#bar0)"><animate attributeName="x" values="180;940;940" keyTimes="0;.45;1" dur="5s" begin="1.8s" repeatCount="indefinite"/></rect>
+<circle cx="940" cy="342" r="4.5" fill="#a5f3fc" filter="url(#neon)"><animate attributeName="cx" values="300;300;940" dur="1.6s" keyTimes="0;0.3;1" calcMode="spline" keySplines="0 0 1 1;.22 1 .36 1" fill="freeze"/></circle>
+<text x="1052" y="348" text-anchor="end" class="sans" font-size="18" font-weight="700" fill="#e6f6ff">32,1%</text>
+<text x="1152" y="347" text-anchor="end" class="mono" font-size="14" fill="#6b8bab">26,7 mil</text>
+</g>
+<g>
+<text x="48" y="402" class="mono" font-size="17" font-weight="700" fill="#22d3ee">#2</text>
+<text x="96" y="403" class="sans" font-size="20" font-weight="600" fill="#e6f6ff">Java</text>
+<rect x="300" y="390" width="640" height="12" rx="4" fill="#0a2140"/>
+<clipPath id="bar1"><rect x="300" y="390" width="398.9" height="12" rx="4"/></clipPath>
+<rect x="300" y="390" width="398.9" height="12" rx="4" fill="url(#barFill)"><animate attributeName="width" values="0;0;398.9" dur="1.7s" keyTimes="0;0.3;1" calcMode="spline" keySplines="0 0 1 1;.22 1 .36 1" fill="freeze"/></rect>
+<rect x="-200" y="390" width="120" height="12" fill="url(#sheen)" clip-path="url(#bar1)"><animate attributeName="x" values="180;698.9;698.9" keyTimes="0;.45;1" dur="5s" begin="2.1s" repeatCount="indefinite"/></rect>
+<circle cx="698.9" cy="396" r="4.5" fill="#a5f3fc" filter="url(#neon)"><animate attributeName="cx" values="300;300;698.9" dur="1.7s" keyTimes="0;0.3;1" calcMode="spline" keySplines="0 0 1 1;.22 1 .36 1" fill="freeze"/></circle>
+<text x="1052" y="402" text-anchor="end" class="sans" font-size="18" font-weight="700" fill="#e6f6ff">20,0%</text>
+<text x="1152" y="401" text-anchor="end" class="mono" font-size="14" fill="#6b8bab">16,6 mil</text>
+</g>
+<g>
+<text x="48" y="456" class="mono" font-size="17" font-weight="700" fill="#22d3ee">#3</text>
+<text x="96" y="457" class="sans" font-size="20" font-weight="600" fill="#e6f6ff">CSS</text>
+<rect x="300" y="444" width="640" height="12" rx="4" fill="#0a2140"/>
+<clipPath id="bar2"><rect x="300" y="444" width="222.8" height="12" rx="4"/></clipPath>
+<rect x="300" y="444" width="222.8" height="12" rx="4" fill="url(#barFill)"><animate attributeName="width" values="0;0;222.8" dur="1.8s" keyTimes="0;0.3;1" calcMode="spline" keySplines="0 0 1 1;.22 1 .36 1" fill="freeze"/></rect>
+<rect x="-200" y="444" width="120" height="12" fill="url(#sheen)" clip-path="url(#bar2)"><animate attributeName="x" values="180;522.8;522.8" keyTimes="0;.45;1" dur="5s" begin="2.4s" repeatCount="indefinite"/></rect>
+<circle cx="522.8" cy="450" r="4.5" fill="#a5f3fc" filter="url(#neon)"><animate attributeName="cx" values="300;300;522.8" dur="1.8s" keyTimes="0;0.3;1" calcMode="spline" keySplines="0 0 1 1;.22 1 .36 1" fill="freeze"/></circle>
+<text x="1052" y="456" text-anchor="end" class="sans" font-size="18" font-weight="700" fill="#e6f6ff">11,2%</text>
+<text x="1152" y="455" text-anchor="end" class="mono" font-size="14" fill="#6b8bab">9,3 mil</text>
+</g>
+<g>
+<text x="48" y="510" class="mono" font-size="17" font-weight="700" fill="#22d3ee">#4</text>
+<text x="96" y="511" class="sans" font-size="20" font-weight="600" fill="#e6f6ff">C#</text>
+<rect x="300" y="498" width="640" height="12" rx="4" fill="#0a2140"/>
+<clipPath id="bar3"><rect x="300" y="498" width="200.2" height="12" rx="4"/></clipPath>
+<rect x="300" y="498" width="200.2" height="12" rx="4" fill="url(#barFill)"><animate attributeName="width" values="0;0;200.2" dur="2s" keyTimes="0;0.4;1" calcMode="spline" keySplines="0 0 1 1;.22 1 .36 1" fill="freeze"/></rect>
+<rect x="-200" y="498" width="120" height="12" fill="url(#sheen)" clip-path="url(#bar3)"><animate attributeName="x" values="180;500.2;500.2" keyTimes="0;.45;1" dur="5s" begin="2.7s" repeatCount="indefinite"/></rect>
+<circle cx="500.2" cy="504" r="4.5" fill="#a5f3fc" filter="url(#neon)"><animate attributeName="cx" values="300;300;500.2" dur="2s" keyTimes="0;0.4;1" calcMode="spline" keySplines="0 0 1 1;.22 1 .36 1" fill="freeze"/></circle>
+<text x="1052" y="510" text-anchor="end" class="sans" font-size="18" font-weight="700" fill="#e6f6ff">10,0%</text>
+<text x="1152" y="509" text-anchor="end" class="mono" font-size="14" fill="#6b8bab">8,3 mil</text>
+</g>
+<g>
+<text x="48" y="564" class="mono" font-size="17" font-weight="700" fill="#22d3ee">#5</text>
+<text x="96" y="565" class="sans" font-size="20" font-weight="600" fill="#e6f6ff">JavaScript</text>
+<rect x="300" y="552" width="640" height="12" rx="4" fill="#0a2140"/>
+<clipPath id="bar4"><rect x="300" y="552" width="173.8" height="12" rx="4"/></clipPath>
+<rect x="300" y="552" width="173.8" height="12" rx="4" fill="url(#barFill)"><animate attributeName="width" values="0;0;173.8" dur="2.1s" keyTimes="0;0.4;1" calcMode="spline" keySplines="0 0 1 1;.22 1 .36 1" fill="freeze"/></rect>
+<rect x="-200" y="552" width="120" height="12" fill="url(#sheen)" clip-path="url(#bar4)"><animate attributeName="x" values="180;473.8;473.8" keyTimes="0;.45;1" dur="5s" begin="3s" repeatCount="indefinite"/></rect>
+<circle cx="473.8" cy="558" r="4.5" fill="#a5f3fc" filter="url(#neon)"><animate attributeName="cx" values="300;300;473.8" dur="2.1s" keyTimes="0;0.4;1" calcMode="spline" keySplines="0 0 1 1;.22 1 .36 1" fill="freeze"/></circle>
+<text x="1052" y="564" text-anchor="end" class="sans" font-size="18" font-weight="700" fill="#e6f6ff">8,7%</text>
+<text x="1152" y="563" text-anchor="end" class="mono" font-size="14" fill="#6b8bab">7,2 mil</text>
+</g>
+<rect x="48" y="594" width="1104" height="1" fill="#0e2f4f"/>
+<text x="48" y="620" class="mono" font-size="14" fill="#6b8bab">também com commits em: HTML · SQL · Portugol · Python · PowerShell · Shell</text>
+</g>
+<rect x=".5" y=".5" width="1199" height="643" rx="23.5" fill="none" stroke="#0e2f4f"/>
+</svg>
