@@ -71,7 +71,7 @@ Desenvolvedor **Full Stack** na **Getel Tecnologia**, onde construo sistemas de 
 
 <p>
   <a href="mailto:gabrielcardossso@gmail.com"><img src="https://img.shields.io/badge/Gmail-041327?style=for-the-badge&logo=gmail&logoColor=22d3ee" alt="Gmail" /></a>
-  <a href="https://www.linkedin.com/in/gabrielcardossso/"><img src="https://img.shields.io/badge/LinkedIn-041327?style=for-the-badge&logo=linkedin&logoColor=22d3ee" alt="LinkedIn" /></a>
+  <a href="https://www.linkedin.com/in/gabrielcardossso/"><img src="https://img.shields.io/badge/LinkedIn-041327?style=for-the-badge&logo=data%3Aimage%2Fsvg%2Bxml%3Bbase64%2CPHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9JzAgMCAyNCAyNCc%2BPHJlY3Qgd2lkdGg9JzI0JyBoZWlnaHQ9JzI0JyByeD0nNCcgZmlsbD0nIzIyZDNlZScvPjxyZWN0IHg9JzQuNicgeT0nOS40JyB3aWR0aD0nMy40JyBoZWlnaHQ9JzEwLjInIGZpbGw9JyMwNDEzMjcnLz48Y2lyY2xlIGN4PSc2LjMnIGN5PSc1LjknIHI9JzInIGZpbGw9JyMwNDEzMjcnLz48cGF0aCBkPSdNMTAuNCA5LjRoMy4zdjEuNWMuNS0uOSAxLjctMS44IDMuNS0xLjggMyAwIDMuOSAxLjkgMy45IDQuN3Y1LjhoLTMuNHYtNS4xYzAtMS4zLS4zLTIuNS0xLjctMi41cy0yLjIgMS4xLTIuMiAyLjZ2NWgtMy40eicgZmlsbD0nIzA0MTMyNycvPjwvc3ZnPg%3D%3D" alt="LinkedIn" /></a>
   <a href="https://instagram.com/gabrielcrdsss"><img src="https://img.shields.io/badge/Instagram-041327?style=for-the-badge&logo=instagram&logoColor=22d3ee" alt="Instagram" /></a>
   <a href="https://wa.me/5548991746960"><img src="https://img.shields.io/badge/WhatsApp-041327?style=for-the-badge&logo=whatsapp&logoColor=22d3ee" alt="WhatsApp" /></a>
 </p>
