@@ -4,7 +4,7 @@
 
 ## ◢ Sobre mim
 
-Desenvolvedor **Full Stack** na **Getel Tecnologia**, onde construo sistemas de gestão de ponta a ponta, do modelo de dados à interface. No back-end, trabalho com **Java e Spring Boot**; no front, com **TypeScript, React e Next.js**. Gosto de software que resolve problema de negócio de verdade: ERPs, CRMs, controle de ponto e estoque.
+Desenvolvedor **Full Stack** na **Getel Tecnologia**, onde construo sistemas de gestão de ponta a ponta, do modelo de dados à interface. No back-end, trabalho no dia a dia com **Node.js e NestJS**, além de **Java e Spring Boot**; no front, com **TypeScript, React e Next.js**. Uso IA (**Claude** e **ChatGPT**) como parte do meu fluxo de desenvolvimento. Gosto de software que resolve problema de negócio de verdade: ERPs, CRMs, controle de ponto e estoque.
 
 - 🏢 &nbsp;Full Stack Developer @ **Getel Tecnologia**
 - 🎓 &nbsp;Cursando **Técnico em Desenvolvimento de Sistemas** no SENAC
@@ -24,7 +24,7 @@ Desenvolvedor **Full Stack** na **Getel Tecnologia**, onde construo sistemas de 
   </tr>
   <tr>
     <td><b>Back-end</b></td>
-    <td><img height="40" src="https://skillicons.dev/icons?i=spring,nodejs,nestjs,dotnet&theme=dark" alt="Spring Boot, Node.js, NestJS, .NET" /></td>
+    <td><img height="40" src="https://skillicons.dev/icons?i=nodejs,nestjs,spring,dotnet&theme=dark" alt="Node.js, NestJS, Spring Boot, .NET" /></td>
   </tr>
   <tr>
     <td><b>Dados</b></td>
@@ -33,6 +33,10 @@ Desenvolvedor **Full Stack** na **Getel Tecnologia**, onde construo sistemas de 
   <tr>
     <td><b>Ferramentas</b></td>
     <td><img height="40" src="https://skillicons.dev/icons?i=git,github,docker,maven,vitest,powershell,vscode&theme=dark" alt="Git, GitHub, Docker, Maven, Vitest, PowerShell, VS Code" /></td>
+  </tr>
+  <tr>
+    <td><b>IA</b></td>
+    <td><img height="40" src="./assets/ai.svg" alt="ChatGPT, Claude" /></td>
   </tr>
 </table>
 
