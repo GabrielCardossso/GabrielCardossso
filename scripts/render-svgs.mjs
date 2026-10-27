@@ -1,13 +1,13 @@
 #!/usr/bin/env node
 /**
  * Gera os SVGs animados do perfil (identidade "Neon Circuit") a partir de profile.config.json
- * e assets/stats.json, e atualiza a tabela de dados do README.
+ * e assets/stats.json.
  *
  * O GitHub exibe SVGs do README como <img>: sem JavaScript e sem fontes externas. Por isso tudo é
  * SMIL + fontes do sistema, e larguras críticas usam textLength para não depender da fonte instalada.
  * Cada animação tem valor-base final, então renderizadores sem animação mostram a peça completa.
  */
-import { existsSync, readFileSync, writeFileSync } from 'node:fs';
+import { readFileSync, writeFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -31,15 +31,6 @@ const MONO = "'JetBrains Mono', 'Cascadia Code', 'Fira Code', Consolas, 'Courier
 const MONO_RATIO = 0.6; // largura de um caractere monoespaçado em relação ao font-size
 
 const integer = new Intl.NumberFormat('pt-BR');
-const compact = new Intl.NumberFormat('pt-BR', { notation: 'compact', maximumFractionDigits: 1 });
-const percent = new Intl.NumberFormat('pt-BR', { style: 'percent', minimumFractionDigits: 1, maximumFractionDigits: 1 });
-const formatDate = (iso) => iso.split('-').reverse().join('/');
-const formatMonth = (iso) =>
-  new Intl.DateTimeFormat('pt-BR', { month: 'short', year: 'numeric', timeZone: 'UTC' })
-    .format(new Date(iso))
-    .replace('.', '')
-    .replace(' de ', '/');
-
 const esc = (text) => String(text).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 const round = (n) => Math.round(n * 10) / 10;
 const chars = (text) => [...text].length;
@@ -221,25 +212,11 @@ ${horizon(340, width)}
 
 /* ---------- dashboard ---------- */
 
-function tile(x, y, width, label, value, caption, index) {
-  const begin = round(0.1 + index * 0.12);
-  return `<g transform="translate(${x} ${y})">
-<animate attributeName="opacity" values="0;0;1" keyTimes="0;${round(begin / (begin + 0.6))};1" dur="${round(begin + 0.6)}s" fill="freeze"/>
-<rect width="${width}" height="112" rx="14" fill="${C.surface}" stroke="${C.border}"/>
-<rect x="0" y="22" width="3" height="68" rx="1.5" fill="${C.cyan}" filter="url(#neon)"/>
-<path d="M${width - 46} 18 H${width - 30} L${width - 20} 28 V40" class="wire"/>
-<circle cx="${width - 20}" cy="44" r="3.5" class="node"><animate attributeName="stroke-opacity" values="1;.3;1" dur="${round(2 + index * 0.4)}s" repeatCount="indefinite"/></circle>
-<text x="24" y="32" class="mono" font-size="13" letter-spacing="2" fill="${C.inkSoft}">${esc(label)}</text>
-<text x="24" y="76" class="sans" font-size="38" font-weight="700" fill="${C.ink}">${esc(value)}</text>
-<text x="24" y="98" class="mono" font-size="13" fill="${C.inkMuted}">${esc(caption)}</text>
-</g>`;
-}
-
-function bar(language, index, { y, max, total }) {
+function bar(language, index, { y, max }) {
   const x = 300;
-  const track = 640;
+  const track = 680;
   const width = round(Math.max(8, (language.lines / max) * track));
-  const begin = round(0.4 + index * 0.12);
+  const begin = round(0.3 + index * 0.12);
   const grow = `dur="${round(begin + 1.2)}s" keyTimes="0;${round(begin / (begin + 1.2))};1" calcMode="spline" keySplines="0 0 1 1;.22 1 .36 1" fill="freeze"`;
   return `<g>
 <text x="48" y="${y + 6}" class="mono" font-size="17" font-weight="700" fill="${C.cyan}">#${index + 1}</text>
@@ -247,52 +224,34 @@ function bar(language, index, { y, max, total }) {
 <rect x="${x}" y="${y - 6}" width="${track}" height="12" rx="4" fill="${C.track}"/>
 <clipPath id="bar${index}"><rect x="${x}" y="${y - 6}" width="${width}" height="12" rx="4"/></clipPath>
 <rect x="${x}" y="${y - 6}" width="${width}" height="12" rx="4" fill="url(#barFill)"><animate attributeName="width" values="0;0;${width}" ${grow}/></rect>
-<rect x="-200" y="${y - 6}" width="120" height="12" fill="url(#sheen)" clip-path="url(#bar${index})"><animate attributeName="x" values="${x - 120};${x + width};${x + width}" keyTimes="0;.45;1" dur="5s" begin="${round(1.8 + index * 0.3)}s" repeatCount="indefinite"/></rect>
+<rect x="-200" y="${y - 6}" width="120" height="12" fill="url(#sheen)" clip-path="url(#bar${index})"><animate attributeName="x" values="${x - 120};${x + width};${x + width}" keyTimes="0;.45;1" dur="5s" begin="${round(1.6 + index * 0.3)}s" repeatCount="indefinite"/></rect>
 <circle cx="${x + width}" cy="${y}" r="4.5" fill="${C.ice}" filter="url(#neon)"><animate attributeName="cx" values="${x};${x};${x + width}" ${grow}/></circle>
-<text x="1052" y="${y + 6}" text-anchor="end" class="sans" font-size="18" font-weight="700" fill="${C.ink}">${esc(percent.format(language.lines / total))}</text>
-<text x="1152" y="${y + 5}" text-anchor="end" class="mono" font-size="14" fill="${C.inkMuted}">${esc(compact.format(language.lines))}</text>
+<text x="1152" y="${y + 6}" text-anchor="end" class="sans" font-size="19" font-weight="700" fill="${C.ink}">${esc(integer.format(language.lines))}</text>
 </g>`;
 }
 
 function dashboard(top) {
   const width = 1200;
   const ranked = stats.languages.slice(0, top);
-  const others = stats.languages.slice(top).filter((language) => language.lines >= 50).map((language) => language.name);
-  const firstRow = 342;
-  const rowHeight = 54;
-  const lastRow = firstRow + (ranked.length - 1) * rowHeight;
-  const height = lastRow + (others.length ? 86 : 50);
-  const updated = `atualizado em ${formatDate(stats.updatedAt)}`;
-  const tileWidth = (width - 96 - 3 * 16) / 4;
-  const tiles = [
-    ['COMMITS', integer.format(stats.commits), `desde ${formatMonth(stats.firstCommit)}`],
-    ['REPOSITÓRIOS', integer.format(stats.repositories), 'pessoais e da empresa'],
-    ['LINHAS ESCRITAS', compact.format(stats.linesWritten), 'código autoral'],
-    ['LINGUAGENS', integer.format(stats.languages.length), 'com commits meus'],
-  ];
+  const firstRow = 132;
+  const rowHeight = 56;
+  const height = firstRow + (ranked.length - 1) * rowHeight + 52;
 
   const body = `<defs>
 <linearGradient id="barFill" x1="0" x2="1"><stop offset="0" stop-color="#0369a1"/><stop offset=".6" stop-color="#0ea5e9"/><stop offset="1" stop-color="${C.cyan}"/></linearGradient>
 <linearGradient id="sheen" x1="0" x2="1"><stop offset="0" stop-color="#ffffff" stop-opacity="0"/><stop offset=".5" stop-color="#ffffff" stop-opacity=".55"/><stop offset="1" stop-color="#ffffff" stop-opacity="0"/></linearGradient>
 </defs>
-<ellipse cx="300" cy="80" rx="520" ry="200" fill="url(#halo)" opacity=".7"/>
-${particles(14, width, height, 9)}
-<polygon points="48,74 70,74 70,52" fill="${C.cyan}" filter="url(#neon)"/>
-<text x="84" y="74" class="sans" font-size="30" font-weight="700" fill="${C.ink}">Code DNA</text>
-<text x="48" y="102" class="mono" font-size="15" fill="${C.inkSoft}">${esc(`linhas que eu escrevi, extraídas de ${integer.format(stats.commits)} commits em ${stats.repositories} repositórios`)}</text>
-<circle cx="${round(1152 - monoWidth(updated, 13) - 14)}" cy="66" r="4" fill="${C.cyan}" filter="url(#neon)"><animate attributeName="opacity" values="1;.25;1" dur="1.6s" repeatCount="indefinite"/></circle>
-<text x="1152" y="70" text-anchor="end" class="mono" font-size="13" fill="${C.inkMuted}">${esc(updated)}</text>
-${tiles.map(([label, value, caption], i) => tile(round(48 + i * (tileWidth + 16)), 128, tileWidth, label, value, caption, i)).join('\n')}
-<text x="48" y="290" class="mono" font-size="14" font-weight="700" letter-spacing="3" fill="${C.cyan}">TOP ${ranked.length} LINGUAGENS</text>
-<text x="1152" y="290" text-anchor="end" class="mono" font-size="13" fill="${C.inkMuted}">% das linhas que escrevi · linhas</text>
-<rect x="48" y="304" width="1104" height="1" fill="${C.border}"/>
-${ranked.map((language, i) => bar(language, i, { y: firstRow + i * rowHeight, max: ranked[0].lines, total: stats.linesWritten })).join('\n')}
-${others.length ? `<rect x="48" y="${lastRow + 36}" width="1104" height="1" fill="${C.border}"/>
-<text x="48" y="${lastRow + 62}" class="mono" font-size="14" fill="${C.inkMuted}">${esc(`também com commits em: ${others.join(' · ')}`)}</text>` : ''}`;
+<ellipse cx="300" cy="60" rx="520" ry="180" fill="url(#halo)" opacity=".7"/>
+${particles(10, width, height, 9)}
+<polygon points="48,70 68,70 68,50" fill="${C.cyan}" filter="url(#neon)"/>
+<text x="82" y="70" class="sans" font-size="26" font-weight="700" fill="${C.ink}">Top ${ranked.length} linguagens</text>
+<text x="1152" y="70" text-anchor="end" class="mono" font-size="14" fill="${C.inkMuted}">linhas escritas</text>
+<rect x="48" y="92" width="1104" height="1" fill="${C.border}"/>
+${ranked.map((language, i) => bar(language, i, { y: firstRow + i * rowHeight, max: ranked[0].lines })).join('\n')}`;
 
   return frame(width, height, {
-    title: `Code DNA — top ${ranked.length} linguagens de ${config.name}`,
-    desc: ranked.map((l, i) => `${i + 1}. ${l.name}: ${percent.format(l.lines / stats.linesWritten)} (${integer.format(l.lines)} linhas)`).join('; '),
+    title: `Top ${ranked.length} linguagens de ${config.name}`,
+    desc: ranked.map((l, i) => `${i + 1}. ${l.name}: ${integer.format(l.lines)} linhas`).join('; '),
   }, body);
 }
 
@@ -315,34 +274,8 @@ ${circuit(left, width, 21)}
   return frame(width, height, { title: 'Rodapé', desc: message }, body);
 }
 
-/* ---------- README ---------- */
-
-function updateReadme(top) {
-  const path = join(ROOT, 'README.md');
-  if (!existsSync(path)) return;
-  const rows = stats.languages
-    .slice(0, top)
-    .map((l, i) => `| ${i + 1} | ${l.name} | ${integer.format(l.lines)} | ${percent.format(l.lines / stats.linesWritten)} |`);
-  const block = [
-    '<!-- code-dna:start -->',
-    '<details>',
-    '<summary>Ver os números do ranking</summary>',
-    '',
-    '| # | Linguagem | Linhas escritas | Participação |',
-    '| :-: | :-- | --: | --: |',
-    ...rows,
-    '',
-    `<sub>${integer.format(stats.commits)} commits em ${stats.repositories} repositórios · lockfiles, dependências e arquivos gerados ficam de fora · atualizado em ${formatDate(stats.updatedAt)}</sub>`,
-    '</details>',
-    '<!-- code-dna:end -->',
-  ].join('\n');
-  const readme = readFileSync(path, 'utf8');
-  writeFileSync(path, readme.replace(/<!-- code-dna:start -->[\s\S]*?<!-- code-dna:end -->/, block));
-}
-
 const top = config.top ?? 5;
 writeFileSync(join(ROOT, 'assets', 'header.svg'), header());
 writeFileSync(join(ROOT, 'assets', 'dashboard.svg'), dashboard(top));
 writeFileSync(join(ROOT, 'assets', 'footer.svg'), footer());
-updateReadme(top);
 console.log('SVGs gerados em assets/.');

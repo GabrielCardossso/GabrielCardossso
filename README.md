@@ -44,22 +44,6 @@ Desenvolvedor **Full Stack** na **Getel Tecnologia**, onde construo sistemas de 
 
 <img src="./assets/dashboard.svg" width="100%" alt="Code DNA: top 5 linguagens por linhas que escrevi nos meus commits" />
 
-<!-- code-dna:start -->
-<details>
-<summary>Ver os números do ranking</summary>
-
-| # | Linguagem | Linhas escritas | Participação |
-| :-: | :-- | --: | --: |
-| 1 | TypeScript | 26.675 | 32,1% |
-| 2 | Java | 16.627 | 20,0% |
-| 3 | CSS | 9.285 | 11,2% |
-| 4 | C# | 8.346 | 10,0% |
-| 5 | JavaScript | 7.245 | 8,7% |
-
-<sub>194 commits em 13 repositórios · lockfiles, dependências e arquivos gerados ficam de fora · atualizado em 27/10/2026</sub>
-</details>
-<!-- code-dna:end -->
-
 ## ◢ Contribuições
 
 <picture>
