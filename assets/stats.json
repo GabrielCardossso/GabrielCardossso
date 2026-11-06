@@ -1,13 +1,13 @@
 {
   "updatedAt": "2026-11-06",
   "firstCommit": "2026-02-07",
-  "commits": 286,
+  "commits": 324,
   "repositories": 17,
-  "linesWritten": 103011,
+  "linesWritten": 108409,
   "languages": [
     {
       "name": "TypeScript",
-      "lines": 41304
+      "lines": 45814
     },
     {
       "name": "Java",
@@ -19,7 +19,7 @@
     },
     {
       "name": "JavaScript",
-      "lines": 8655
+      "lines": 9005
     },
     {
       "name": "C#",
@@ -27,11 +27,11 @@
     },
     {
       "name": "HTML",
-      "lines": 7704
+      "lines": 7854
     },
     {
       "name": "SQL",
-      "lines": 4591
+      "lines": 4979
     },
     {
       "name": "Portugol",
