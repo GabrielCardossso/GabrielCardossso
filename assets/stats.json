@@ -1,13 +1,13 @@
 {
-  "updatedAt": "2026-11-05",
+  "updatedAt": "2026-11-06",
   "firstCommit": "2026-02-07",
-  "commits": 244,
-  "repositories": 14,
-  "linesWritten": 94922,
+  "commits": 286,
+  "repositories": 17,
+  "linesWritten": 103011,
   "languages": [
     {
       "name": "TypeScript",
-      "lines": 34608
+      "lines": 41304
     },
     {
       "name": "Java",
@@ -15,19 +15,19 @@
     },
     {
       "name": "CSS",
-      "lines": 9725
+      "lines": 9905
+    },
+    {
+      "name": "JavaScript",
+      "lines": 8655
     },
     {
       "name": "C#",
       "lines": 8346
     },
     {
-      "name": "JavaScript",
-      "lines": 8308
-    },
-    {
       "name": "HTML",
-      "lines": 7116
+      "lines": 7704
     },
     {
       "name": "SQL",
@@ -39,7 +39,7 @@
     },
     {
       "name": "Python",
-      "lines": 512
+      "lines": 790
     },
     {
       "name": "PowerShell",
