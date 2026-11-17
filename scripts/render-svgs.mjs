@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
- * Gera os SVGs animados do perfil (identidade "Terminal Pixel": uma janela de terminal com letreiro
- * em pixel art) a partir de profile.config.json, assets/stats.json e assets/streak.json.
+ * Gera os SVGs animados do perfil (identidade "Terminal Pixel": tema de terminal em laranja, com
+ * letreiros em pixel art) a partir de profile.config.json, assets/stats.json e assets/streak.json.
  *
  * O GitHub exibe SVGs do README como <img>: sem JavaScript e sem fontes externas. Por isso tudo é
  * SMIL + fontes do sistema, os letreiros são desenhados pixel a pixel e larguras críticas usam
@@ -138,11 +138,17 @@ function frame(width, height, { title, desc, bar }, body) {
 text{shape-rendering:auto}
 </style>
 <defs>
+<pattern id="grid" width="32" height="32" patternUnits="userSpaceOnUse"><rect width="2" height="2" fill="#ffffff" opacity=".06"/></pattern>
+<linearGradient id="shine" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="640" y2="0" spreadMethod="repeat">
+<stop offset="0" stop-color="${C.accent}"/><stop offset=".3" stop-color="#f2a07f"/><stop offset=".5" stop-color="#ffe6d8"/><stop offset=".7" stop-color="#f2a07f"/><stop offset="1" stop-color="${C.accent}"/>
+<animateTransform attributeName="gradientTransform" type="translate" from="0 0" to="640 0" dur="6s" repeatCount="indefinite"/>
+</linearGradient>
 <pattern id="scan" width="4" height="4" patternUnits="userSpaceOnUse"><rect width="4" height="1" fill="#000" opacity=".22"/></pattern>
 <clipPath id="card"><rect width="${width}" height="${height}" rx="10"/></clipPath>
 </defs>
 <g clip-path="url(#card)">
 <rect width="${width}" height="${height}" fill="${C.bg}"/>
+<rect width="${width}" height="${height}" fill="url(#grid)"/>
 ${titleBar}
 ${body}
 <rect width="${width}" height="${height}" fill="url(#scan)"/>
@@ -150,18 +156,6 @@ ${body}
 <rect x=".5" y=".5" width="${width - 1}" height="${height - 1}" rx="9.5" fill="none" stroke="${C.border}"/>
 </svg>
 `;
-}
-
-// Spinner de "pensando" do terminal: os glifos giram no mesmo lugar.
-function spinner(x, y, size) {
-  const glyphs = ['·', '✢', '✳', '✶', '✻', '✽', '✻', '✶', '✳', '✢'];
-  const dur = 1.6;
-  return glyphs
-    .map((glyph, i) => {
-      const values = glyphs.map((_, j) => (j === i ? 1 : 0)).join(';');
-      return `<text x="${x}" y="${y}" class="mono" font-size="${size}" fill="${C.accent}" opacity="${i === 4 ? 1 : 0}"><animate attributeName="opacity" values="${values}" calcMode="discrete" dur="${dur}s" repeatCount="indefinite"/>${glyph}</text>`;
-    })
-    .join('');
 }
 
 /* ---------- header ---------- */
@@ -204,41 +198,97 @@ function typing(phrases, { x, y, size }) {
   return [...lines, cursor].join('\n');
 }
 
+// PRNG com semente: as partículas mudam de lugar só quando o código muda, não a cada geração.
+function random(seed) {
+  return () => {
+    seed = (seed + 0x6d2b79f5) | 0;
+    let t = Math.imul(seed ^ (seed >>> 15), 1 | seed);
+    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  };
+}
+
+// Trilha em ângulo reto com um bloco de luz correndo até um nó quadrado.
+function trace(points, dur, begin) {
+  const d = `M${points.map(([x, y]) => `${x} ${y}`).join(' L')}`;
+  const length = points.slice(1).reduce((sum, [x, y], i) => sum + Math.abs(x - points[i][0]) + Math.abs(y - points[i][1]), 0);
+  const pulse = 40;
+  const [x, y] = points.at(-1);
+  return `<path d="${d}" fill="none" stroke="${C.cell}" stroke-width="4" stroke-linecap="square"/>
+<path d="${d}" fill="none" stroke="${C.accent}" stroke-width="4" stroke-linecap="butt" stroke-dasharray="${pulse} ${length + pulse}" stroke-dashoffset="${pulse}"><animate attributeName="stroke-dashoffset" values="${pulse};${-length}" dur="${dur}s" begin="${begin}s" repeatCount="indefinite"/></path>
+<rect x="${x - 6}" y="${y - 6}" width="12" height="12" fill="${C.bg}" stroke="${C.accent}" stroke-width="2"/>
+<rect x="${x - 2}" y="${y - 2}" width="4" height="4" fill="${C.flame}" opacity=".25"><animate attributeName="opacity" values=".25;.25;1;.25" keyTimes="0;.8;.92;1" calcMode="discrete" dur="${dur}s" begin="${begin}s" repeatCount="indefinite"/></rect>`;
+}
+
+// Trilhas do lado esquerdo e o espelho delas no direito, com ritmos diferentes.
+function circuit(leftTraces, width, seed) {
+  const rnd = random(seed);
+  const mirror = (points) => points.map(([x, y]) => [width - x, y]);
+  return [...leftTraces, ...leftTraces.map(mirror)]
+    .map((points) => {
+      const dur = round(3 + rnd() * 3);
+      return trace(points, dur, round(-rnd() * dur));
+    })
+    .join('\n');
+}
+
+// Faíscas quadradas subindo em degraus de pixel.
+function particles(count, width, height, seed) {
+  const rnd = random(seed);
+  return Array.from({ length: count }, () => {
+    const x = Math.round(20 + rnd() * (width - 40));
+    const y = Math.round(60 + rnd() * (height - 100));
+    const dur = round(4 + rnd() * 5);
+    const begin = round(-rnd() * dur);
+    const size = rnd() > 0.6 ? 4 : 3;
+    const ys = Array.from({ length: 9 }, (_, i) => y - i * 5).join(';');
+    return `<rect x="${x}" y="${y}" width="${size}" height="${size}" fill="${C.accent}" opacity="0"><animate attributeName="y" values="${ys}" calcMode="discrete" dur="${dur}s" begin="${begin}s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;.8;.8;0" calcMode="discrete" dur="${dur}s" begin="${begin}s" repeatCount="indefinite"/></rect>`;
+  }).join('\n');
+}
+
+// Linha do horizonte com um bloco varrendo de ponta a ponta.
+function horizon(y, width) {
+  return `<rect x="40" y="${y}" width="${width - 80}" height="2" fill="${C.border}"/>
+<rect x="-60" y="${y - 1}" width="60" height="4" fill="${C.accent}"><animate attributeName="x" values="-60;${width}" dur="7s" repeatCount="indefinite"/></rect>`;
+}
+
 function header() {
   const width = 1200;
-  const height = 466;
-  const firstName = config.name.split(' ')[0];
-  const name = config.name.toUpperCase();
-  const size = Math.min(12, Math.floor(1080 / (chars(name) * 6 - 1)));
-  const nameX = Math.round((width - pixelWidth(name, size)) / 2);
-  const welcome = [
-    [`Bem-vindo ao perfil do ${firstName}!`, C.ink, 700],
-    ['/sobre · /stack · /code-dna · /streak · /contato', C.muted, 400],
-    [`local: ${config.location}`, C.muted, 400],
+  const height = 370;
+  const left = [
+    [[-10, 58], [96, 58], [96, 88], [196, 88]],
+    [[-10, 136], [54, 136], [54, 166], [160, 166]],
+    [[-10, 214], [120, 214], [120, 244], [258, 244]],
+    [[-10, 300], [80, 300], [80, 270], [178, 270]],
+    [[44, 380], [44, 316], [262, 316]],
   ];
-  const role = `── ${config.role} ──`;
+  const status = `ONLINE · ${config.location.toUpperCase()}`;
+  const statusWidth = monoWidth(status, 14);
+  const pill = statusWidth + 52;
+  const role = config.role.toUpperCase();
+  const name = config.name.toUpperCase();
+  const size = Math.min(9, Math.floor(820 / (chars(name) * 6 - 1)));
+  const nameX = Math.round((width - pixelWidth(name, size)) / 2);
 
-  const body = `<g transform="translate(${width - 132} 13)">
-<rect x="0" y="4" width="8" height="8" fill="${C.green}"><animate attributeName="opacity" values="1;.2;1" calcMode="discrete" dur="1.2s" repeatCount="indefinite"/></rect>
-<text x="16" y="13" class="mono" font-size="13" fill="${C.green}">online</text>
+  const body = `${circuit(left, width, 7)}
+${particles(26, width, height, 42)}
+<g transform="translate(${Math.round(600 - pill / 2)} 34)">
+<rect x=".5" y=".5" width="${pill}" height="32" rx="4" fill="${C.bar}" stroke="${C.border}"/>
+<rect x="15" y="12" width="9" height="9" fill="${C.green}"><animate attributeName="opacity" values="1;.25" calcMode="discrete" dur="1.6s" repeatCount="indefinite"/></rect>
+<text x="34" y="21" class="mono" font-size="14" fill="${C.soft}" textLength="${statusWidth}">${esc(status)}</text>
 </g>
-<rect x="40.5" y="64.5" width="600" height="104" rx="6" fill="none" stroke="${C.accent}"/>
-<text x="62" y="98" class="mono" font-size="17" fill="${C.accent}">✻</text>
-${welcome.map(([text, fill, weight], i) => `<text x="88" y="${98 + i * 28}" class="mono" font-size="${i ? 14 : 17}" font-weight="${weight}" fill="${fill}">${esc(text)}</text>`).join('\n')}
-${pixelText(name, { x: nameX, y: 196, size, reveal: 1.6, id: 'name' })}
-<text x="${width / 2}" y="${196 + 7 * size + 40}" text-anchor="middle" class="mono" font-size="17" fill="${C.soft}" textLength="${monoWidth(role, 17)}">${esc(role)}</text>
-${spinner(40, 362, 17)}
-<text x="64" y="362" class="mono" font-size="15" fill="${C.accent}">Codando…</text>
-<text x="150" y="362" class="mono" font-size="14" fill="${C.dim}">(esc para interromper)</text>
-<rect x="40.5" y="378.5" width="1119" height="48" rx="6" fill="none" stroke="${C.dim}"/>
-<text x="60" y="409" class="mono" font-size="18" fill="${C.accent}">&gt;</text>
-${typing(config.typing, { x: 84, y: 409, size: 18 })}
-<text x="44" y="452" class="mono" font-size="12" fill="${C.dim}">? para atalhos</text>`;
+${pixelText(name, { x: nameX, y: 98, size, color: 'url(#shine)' })}
+<text x="300" y="214" class="mono" font-size="17" font-weight="700" textLength="600" fill="${C.soft}">${esc(role)}</text>
+<rect x="470" y="234" width="260" height="2" fill="${C.border}"/>
+<rect x="470" y="233" width="40" height="4" fill="${C.accent}"><animate attributeName="x" values="470;690;470" dur="5s" repeatCount="indefinite"/></rect>
+<rect x="310.5" y="254.5" width="580" height="52" rx="4" fill="#121110" stroke="${C.dim}"/>
+<text x="328" y="286" class="mono" font-size="18" fill="${C.accent}">&gt;</text>
+${typing(config.typing, { x: 352, y: 286, size: 18 })}
+${horizon(340, width)}`;
 
   return frame(width, height, {
     title: `${config.name} — ${config.role}`,
     desc: config.typing.join(' · '),
-    bar: `${config.user.toLowerCase()}@github: ~/perfil — claude`,
   }, body);
 }
 
@@ -260,31 +310,32 @@ function cellBar(filled, total, { x, y, begin, color = C.accent }) {
 function dashboard(top) {
   const width = 1200;
   const ranked = stats.languages.slice(0, top);
-  const firstRow = 150;
-  const rowHeight = 50;
-  const height = firstRow + ranked.length * rowHeight + 30;
+  const firstRow = 132;
+  const rowHeight = 56;
+  const height = firstRow + (ranked.length - 1) * rowHeight + 52;
   const cells = 52;
   const max = ranked[0].lines;
-  const summary = `${integer.format(stats.commits)} commits · ${plural(stats.repositories, 'repositório', 'repositórios')} · ${integer.format(stats.linesWritten)} linhas`;
 
   const rows = ranked.map((language, i) => {
     const y = firstRow + i * rowHeight;
     const filled = Math.max(1, Math.round((language.lines / max) * cells));
-    return `<text x="68" y="${y + 12}" class="mono" font-size="16" font-weight="700" fill="${i === 0 ? C.accent : C.muted}">#${i + 1}</text>
-<text x="118" y="${y + 12}" class="mono" font-size="18" fill="${C.ink}">${esc(language.name)}</text>
-${cellBar(filled, cells, { x: 320, y: y - 2, begin: 0.3 + i * 0.25 })}
-<text x="1152" y="${y + 12}" text-anchor="end" class="mono" font-size="18" font-weight="700" fill="${C.ink}">${esc(integer.format(language.lines))}</text>`;
+    return `<text x="48" y="${y + 6}" class="mono" font-size="17" font-weight="700" fill="${C.accent}">#${i + 1}</text>
+<text x="96" y="${y + 7}" class="mono" font-size="19" font-weight="700" fill="${C.ink}">${esc(language.name)}</text>
+${cellBar(filled, cells, { x: 300, y: y - 7, begin: 0.3 + i * 0.25 })}
+<text x="1152" y="${y + 6}" text-anchor="end" class="mono" font-size="19" font-weight="700" fill="${C.ink}">${esc(integer.format(language.lines))}</text>`;
   });
 
-  const body = `<rect x="48" y="78" width="10" height="10" fill="${C.accent}"><animate attributeName="opacity" values="1;.3;1" calcMode="discrete" dur="1.4s" repeatCount="indefinite"/></rect>
-<text x="70" y="88" class="mono" font-size="18" fill="${C.ink}"><tspan font-weight="700">CodeDNA</tspan><tspan fill="${C.muted}">(top ${ranked.length} linguagens)</tspan></text>
-<text x="70" y="116" class="mono" font-size="14" fill="${C.muted}">⎿  linhas que escrevi nos meus commits · ${esc(summary)}</text>
+  const body = `${particles(10, width, height, 9)}
+<rect x="48" y="50" width="20" height="20" fill="${C.accent}"/>
+<rect x="52" y="54" width="12" height="12" fill="${C.flame}"><animate attributeName="opacity" values="1;.2" calcMode="discrete" dur="1.4s" repeatCount="indefinite"/></rect>
+<text x="82" y="70" class="mono" font-size="25" font-weight="700" fill="${C.ink}">Top ${ranked.length} linguagens</text>
+<text x="1152" y="70" text-anchor="end" class="mono" font-size="14" fill="${C.muted}">linhas escritas</text>
+<rect x="48" y="92" width="1104" height="2" fill="${C.border}"/>
 ${rows.join('\n')}`;
 
   return frame(width, height, {
     title: `Top ${ranked.length} linguagens de ${config.name}`,
     desc: ranked.map((l, i) => `${i + 1}. ${l.name}: ${integer.format(l.lines)} linhas`).join('; '),
-    bar: 'code-dna — linhas escritas por linguagem',
   }, body);
 }
 
@@ -376,17 +427,20 @@ ${strip}`;
 
 function footer() {
   const width = 1200;
-  const height = 170;
+  const height = 150;
+  const left = [
+    [[-10, 58], [470, 58]],
+    [[-10, 22], [358, 22], [358, 46], [470, 46]],
+    [[-10, 96], [358, 96], [358, 70], [470, 70]],
+  ];
   const word = 'OBRIGADO';
-  const size = 7;
-  const message = 'Bora construir algo juntos.';
-  const body = `<text x="40" y="40" class="mono" font-size="15" fill="${C.accent}">&gt;</text>
-<text x="62" y="40" class="mono" font-size="15" fill="${C.ink}">/exit</text>
-${pixelText(word, { x: Math.round((width - pixelWidth(word, size)) / 2), y: 58, size, reveal: 1.2, id: 'bye' })}
-<text x="${width / 2 - monoWidth(message, 16) / 2 - 14}" y="${58 + 7 * size + 44}" class="mono" font-size="16" fill="${C.accent}">✻</text>
-<text x="${width / 2}" y="${58 + 7 * size + 44}" text-anchor="middle" class="mono" font-size="16" fill="${C.soft}" textLength="${monoWidth(message, 16)}">${esc(message)}</text>
-<rect x="${round(width / 2 + monoWidth(message, 16) / 2 + 6)}" y="${58 + 7 * size + 30}" width="10" height="18" fill="${C.ink}"><animate attributeName="opacity" values="1;0" calcMode="discrete" dur="1s" repeatCount="indefinite"/></rect>`;
-  return frame(width, height, { title: 'Rodapé', desc: `Obrigado! ${message}` }, body);
+  const size = 4;
+  const message = 'Bora construir algo juntos';
+  const body = `${circuit(left, width, 21)}
+<rect x="470.5" y="34.5" width="259" height="47" rx="4" fill="#121110" stroke="${C.accent}" stroke-width="2"><animate attributeName="stroke-opacity" values="1;.4" calcMode="discrete" dur="1.5s" repeatCount="indefinite"/></rect>
+${pixelText(word, { x: Math.round(600 - pixelWidth(word, size) / 2), y: 44, size, color: 'url(#shine)' })}
+<text x="600" y="126" text-anchor="middle" class="mono" font-size="16" fill="${C.soft}" textLength="${monoWidth(message, 16)}">${esc(message)}</text>`;
+  return frame(width, height, { title: 'Rodapé', desc: message }, body);
 }
 
 const top = config.top ?? 5;

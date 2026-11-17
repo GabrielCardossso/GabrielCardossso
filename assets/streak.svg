@@ -6,11 +6,17 @@
 text{shape-rendering:auto}
 </style>
 <defs>
+<pattern id="grid" width="32" height="32" patternUnits="userSpaceOnUse"><rect width="2" height="2" fill="#ffffff" opacity=".06"/></pattern>
+<linearGradient id="shine" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="640" y2="0" spreadMethod="repeat">
+<stop offset="0" stop-color="#d97757"/><stop offset=".3" stop-color="#f2a07f"/><stop offset=".5" stop-color="#ffe6d8"/><stop offset=".7" stop-color="#f2a07f"/><stop offset="1" stop-color="#d97757"/>
+<animateTransform attributeName="gradientTransform" type="translate" from="0 0" to="640 0" dur="6s" repeatCount="indefinite"/>
+</linearGradient>
 <pattern id="scan" width="4" height="4" patternUnits="userSpaceOnUse"><rect width="4" height="1" fill="#000" opacity=".22"/></pattern>
 <clipPath id="card"><rect width="1200" height="400" rx="10"/></clipPath>
 </defs>
 <g clip-path="url(#card)">
 <rect width="1200" height="400" fill="#191817"/>
+<rect width="1200" height="400" fill="url(#grid)"/>
 <rect width="1200" height="40" fill="#262422"/>
 <rect y="40" width="1200" height="1" fill="#3a3733"/>
 <rect x="20" y="14" width="12" height="12" fill="#e5534b"/>
