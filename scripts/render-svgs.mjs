@@ -479,14 +479,60 @@ ${strip}`;
   }, body);
 }
 
-/* ---------- títulos avulsos e rodapé ---------- */
+/* ---------- contribuições, contato e rodapé ---------- */
 
-// Barra de título + cabeçalho para seções cujo conteúdo vem logo abaixo (cobrinha, contatos).
-function sectionBar(bar, text, note) {
-  const height = 112;
-  const body = `${heading(48, 88, text)}
-${note ? `<text x="${WIDTH - 48}" y="88" text-anchor="end" class="mono" font-size="14" fill="${C.muted}">${esc(note)}</text>` : ''}`;
-  return frame(WIDTH, height, { title: text, desc: note ?? text, bar }, body);
+const note = (text) => `<text x="${WIDTH - 48}" y="88" text-anchor="end" class="mono" font-size="14" fill="${C.muted}">${esc(text)}</text>`;
+
+/**
+ * Card da cobrinha. O SVG gerado pelo Platane/snk (assets/snake.svg) entra embutido como um <svg>
+ * filho, porque o GitHub não deixa um SVG carregar outra imagem. As animações dele são CSS e
+ * continuam rodando dentro do card.
+ */
+function contributions() {
+  const file = join(ASSETS, 'snake.svg');
+  const snake = existsSync(file) ? readFileSync(file, 'utf8') : '';
+  const viewBox = snake.match(/viewBox="([^"]+)"/)?.[1];
+  const [, , w, h] = (viewBox ?? '0 0 880 192').split(/\s+/).map(Number);
+  const width = WIDTH - 96;
+  const height = Math.round((width * h) / w);
+  const inner = viewBox
+    ? snake.replace(/^[\s\S]*?<svg[^>]*>/, `<svg x="48" y="112" width="${width}" height="${height}" viewBox="${viewBox}">`)
+    : `<text x="70" y="150" class="mono" font-size="14" fill="${C.muted}">a cobrinha aparece na próxima atualização</text>`;
+  const body = `${heading(48, 88, 'Contribuições')}
+${note('a cobrinha come os dias com commit')}
+${inner}`;
+  return frame(WIDTH, 112 + height + 20, {
+    title: 'Contribuições',
+    desc: 'Cobrinha percorrendo o gráfico de contribuições do último ano',
+    bar: 'contribuicoes — último ano',
+  }, body);
+}
+
+/**
+ * Card de contato, fatiado em colunas: cada fatia é o mesmo desenho com um viewBox diferente,
+ * para que no README cada uma vire um link e, coladas, pareçam um card só.
+ */
+function contactSlices() {
+  const count = config.contacts.length;
+  const slice = WIDTH / count;
+  const height = 200;
+  const buttons = config.contacts.map((contact, i) => {
+    const x = i * slice + 24;
+    const w = slice - 48;
+    return `<rect x="${x + 0.5}" y="112.5" width="${w}" height="60" rx="6" fill="${C.bar}" stroke="${C.border}"/>
+<image href="${logo(contact.name)}" x="${x + 24}" y="130" width="24" height="24"/>
+<text x="${x + 62}" y="148" class="mono" font-size="17" font-weight="700" fill="${C.ink}">${esc(contact.label)}</text>
+<text x="${x + w - 20}" y="148" text-anchor="end" class="mono" font-size="18" fill="${C.accent}">↗</text>`;
+  });
+  const body = `${heading(48, 88, 'Contato')}
+${note('clique num botão')}
+${buttons.join('\n')}`;
+  const full = frame(WIDTH, height, { title: 'Contato', desc: 'Contato', bar: 'contato' }, body);
+  return config.contacts.map((contact, i) =>
+    full
+      .replace(/width="1200" height="200" viewBox="0 0 1200 200"/, `width="${slice}" height="${height}" viewBox="${i * slice} 0 ${slice} ${height}"`)
+      .replace(/<title id="title">[^<]*<\/title>/, `<title id="title">${esc(contact.label)}</title>`),
+  );
 }
 
 function footer() {
@@ -512,10 +558,7 @@ for (const project of config.projects) {
 save('stack.svg', stack());
 save('dashboard.svg', dashboard(config.top ?? 5));
 save('streak.svg', streakCard());
-save('contributions.svg', sectionBar('contribuicoes — último ano', 'Contribuições', 'a cobrinha come os dias com commit'));
-save('contact.svg', sectionBar('contato', 'Contato', 'clique num botão abaixo'));
-for (const contact of config.contacts) {
-  save(`contact-${contact.name}.svg`, tile({ width: 290, height: 64, title: contact.label, icon: contact.name }));
-}
+save('contributions.svg', contributions());
+contactSlices().forEach((svg, i) => save(`contact-${config.contacts[i].name}.svg`, svg));
 save('footer.svg', footer());
 console.log('SVGs gerados em assets/.');

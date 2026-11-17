@@ -13,18 +13,9 @@
 
 <img src="./assets/streak.svg" width="100%" alt="Streak de atividade no GitHub: dias seguidos com contribuição e as maiores streaks" />
 
-<img src="./assets/contributions.svg" width="100%" alt="Contribuições" />
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/GabrielCardossso/GabrielCardossso/output/snake-dark.svg" />
-  <img src="https://raw.githubusercontent.com/GabrielCardossso/GabrielCardossso/output/snake-light.svg" width="100%" alt="Cobrinha percorrendo meu gráfico de contribuições" />
-</picture>
+<img src="./assets/contributions.svg" width="100%" alt="Contribuições: cobrinha percorrendo meu gráfico de contribuições" />
 
-<img src="./assets/contact.svg" width="100%" alt="Contato" />
-<p>
-  <a href="mailto:gabrielcardossso@gmail.com"><img src="./assets/contact-gmail.svg" width="24%" alt="Gmail" /></a>
-  <a href="https://www.linkedin.com/in/gabrielcardossso/"><img src="./assets/contact-linkedin.svg" width="24%" alt="LinkedIn" /></a>
-  <a href="https://instagram.com/gabrielcrdsss"><img src="./assets/contact-instagram.svg" width="24%" alt="Instagram" /></a>
-  <a href="https://wa.me/5548991746960"><img src="./assets/contact-whatsapp.svg" width="24%" alt="WhatsApp" /></a>
-</p>
+<!-- As 4 fatias formam um card só: mantenha as tags coladas, sem espaço ou quebra de linha entre elas. -->
+<p><a href="mailto:gabrielcardossso@gmail.com"><img src="./assets/contact-gmail.svg" width="25%" alt="Contato: Gmail" /></a><a href="https://www.linkedin.com/in/gabrielcardossso/"><img src="./assets/contact-linkedin.svg" width="25%" alt="LinkedIn" /></a><a href="https://instagram.com/gabrielcrdsss"><img src="./assets/contact-instagram.svg" width="25%" alt="Instagram" /></a><a href="https://wa.me/5548991746960"><img src="./assets/contact-whatsapp.svg" width="25%" alt="WhatsApp" /></a></p>
 
 <img src="./assets/footer.svg" width="100%" alt="" />
