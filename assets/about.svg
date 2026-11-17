@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="447" viewBox="0 0 1200 447" role="img" aria-labelledby="title desc" shape-rendering="crispEdges">
+<title id="title">Sobre Gabriel Cardoso</title>
+<desc id="desc">Estagiário de desenvolvimento Full Stack na Getel Tecnologia, onde participo da construção de sistemas de gestão de ponta a ponta, do modelo de dados à interface. No back-end, trabalho no dia a dia com Node.js e NestJS, além de Java e Spring Boot; no front, com TypeScript, React e Next.js. Uso IA (Claude e ChatGPT) como parte do meu fluxo de desenvolvimento. Gosto de software que resolve problema de negócio de verdade: ERPs, CRMs, controle de ponto e estoque.</desc>
+<style>
+.mono{font-family:'JetBrains Mono', 'Cascadia Code', 'Fira Code', Consolas, 'DejaVu Sans Mono', 'Courier New', monospace}
+text{shape-rendering:auto}
+</style>
+<defs>
+<pattern id="grid" width="32" height="32" patternUnits="userSpaceOnUse"><rect width="2" height="2" fill="#ffffff" opacity=".06"/></pattern>
+<pattern id="scan" width="4" height="4" patternUnits="userSpaceOnUse"><rect width="4" height="1" fill="#000" opacity=".22"/></pattern>
+<clipPath id="card"><rect width="1200" height="447" rx="10"/></clipPath>
+</defs>
+<g clip-path="url(#card)">
+<rect width="1200" height="447" fill="#191817"/>
+<rect width="1200" height="447" fill="url(#grid)"/>
+<rect width="1200" height="40" fill="#262422"/>
+<rect y="40" width="1200" height="1" fill="#3a3733"/>
+<rect x="20" y="14" width="12" height="12" fill="#e5534b"/>
+<rect x="40" y="14" width="12" height="12" fill="#e0a43b"/>
+<rect x="60" y="14" width="12" height="12" fill="#5fb85f"/>
+<text x="600" y="25" text-anchor="middle" class="mono" font-size="14" fill="#86817a">sobre-mim.md</text>
+<rect x="48" y="78" width="10" height="10" fill="#d97757"/>
+<text x="70" y="88" class="mono" font-size="18" font-weight="700" fill="#ece9e4">Sobre mim</text>
+<text x="70" y="122" class="mono" font-size="16" fill="#b7b2aa" xml:space="preserve">Estagiário de desenvolvimento<tspan font-weight="700" fill="#ece9e4"> Full</tspan><tspan font-weight="700" fill="#ece9e4"> Stack</tspan> na<tspan font-weight="700" fill="#ece9e4"> Getel</tspan><tspan font-weight="700" fill="#ece9e4"> Tecnologia</tspan> , onde participo da construção de sistemas de</text>
+<text x="70" y="149" class="mono" font-size="16" fill="#b7b2aa" xml:space="preserve">gestão de ponta a ponta, do modelo de dados à interface. No back-end, trabalho no dia a dia com<tspan font-weight="700" fill="#ece9e4"> Node.js</tspan><tspan font-weight="700" fill="#ece9e4"> e</tspan></text>
+<text x="70" y="176" class="mono" font-size="16" fill="#b7b2aa" xml:space="preserve"><tspan font-weight="700" fill="#ece9e4">NestJS</tspan> , além de<tspan font-weight="700" fill="#ece9e4"> Java</tspan><tspan font-weight="700" fill="#ece9e4"> e</tspan><tspan font-weight="700" fill="#ece9e4"> Spring</tspan><tspan font-weight="700" fill="#ece9e4"> Boot</tspan> ; no front, com<tspan font-weight="700" fill="#ece9e4"> TypeScript,</tspan><tspan font-weight="700" fill="#ece9e4"> React</tspan><tspan font-weight="700" fill="#ece9e4"> e</tspan><tspan font-weight="700" fill="#ece9e4"> Next.js</tspan> . Uso IA (<tspan font-weight="700" fill="#ece9e4"> Claude</tspan> e<tspan font-weight="700" fill="#ece9e4"> ChatGPT</tspan> )</text>
+<text x="70" y="203" class="mono" font-size="16" fill="#b7b2aa" xml:space="preserve">como parte do meu fluxo de desenvolvimento. Gosto de software que resolve problema de negócio de verdade:</text>
+<text x="70" y="230" class="mono" font-size="16" fill="#b7b2aa" xml:space="preserve">ERPs, CRMs, controle de ponto e estoque.</text>
+<rect x="48" y="261" width="1104" height="1" fill="#3a3733"/>
+<rect x="72" y="282" width="7" height="7" fill="#d97757"/>
+<text x="92" y="291" class="mono" font-size="15" fill="#b7b2aa" xml:space="preserve">Estagiário Full Stack @<tspan font-weight="700" fill="#ece9e4"> Getel</tspan><tspan font-weight="700" fill="#ece9e4"> Tecnologia</tspan></text>
+<rect x="72" y="312" width="7" height="7" fill="#d97757"/>
+<text x="92" y="321" class="mono" font-size="15" fill="#b7b2aa" xml:space="preserve">Cursando<tspan font-weight="700" fill="#ece9e4"> Técnico</tspan><tspan font-weight="700" fill="#ece9e4"> em</tspan><tspan font-weight="700" fill="#ece9e4"> Desenvolvimento</tspan><tspan font-weight="700" fill="#ece9e4"> de</tspan><tspan font-weight="700" fill="#ece9e4"> Sistemas</tspan> no SENAC</text>
+<rect x="72" y="342" width="7" height="7" fill="#d97757"/>
+<text x="92" y="351" class="mono" font-size="15" fill="#b7b2aa" xml:space="preserve">Projeto do curso:<tspan font-weight="700" fill="#ece9e4"> hora-control</tspan> (controle de ponto com Spring Security)</text>
+<rect x="72" y="372" width="7" height="7" fill="#d97757"/>
+<text x="92" y="381" class="mono" font-size="15" fill="#b7b2aa" xml:space="preserve">Projeto pessoal:<tspan font-weight="700" fill="#ece9e4"> estetica-flow</tspan> (ERP SaaS para estética automotiva)</text>
+<rect x="72" y="402" width="7" height="7" fill="#d97757"/>
+<text x="92" y="411" class="mono" font-size="15" fill="#b7b2aa" xml:space="preserve">Tubarão · SC · Brasil</text>
+<rect width="1200" height="447" fill="url(#scan)"/>
+</g>
+<rect x=".5" y=".5" width="1199" height="446" rx="9.5" fill="none" stroke="#3a3733"/>
+</svg>

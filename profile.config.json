@@ -12,5 +12,31 @@
     "Codando com IA: Claude · ChatGPT",
     "Cursando Técnico em Desenvolvimento de Sistemas"
   ],
-  "top": 5
+  "top": 5,
+  "about": "Estagiário de desenvolvimento **Full Stack** na **Getel Tecnologia**, onde participo da construção de sistemas de gestão de ponta a ponta, do modelo de dados à interface. No back-end, trabalho no dia a dia com **Node.js e NestJS**, além de **Java e Spring Boot**; no front, com **TypeScript, React e Next.js**. Uso IA (**Claude** e **ChatGPT**) como parte do meu fluxo de desenvolvimento. Gosto de software que resolve problema de negócio de verdade: ERPs, CRMs, controle de ponto e estoque.",
+  "highlights": [
+    "Estagiário Full Stack @ **Getel Tecnologia**",
+    "Cursando **Técnico em Desenvolvimento de Sistemas** no SENAC",
+    "Projeto do curso: **hora-control** (controle de ponto com Spring Security)",
+    "Projeto pessoal: **estetica-flow** (ERP SaaS para estética automotiva)",
+    "Tubarão · SC · Brasil"
+  ],
+  "projects": [
+    { "name": "hora-control", "description": "controle de ponto · Spring Security", "url": "https://github.com/GabrielCardossso/hora-control" },
+    { "name": "estetica-flow", "description": "ERP SaaS · estética automotiva", "url": "https://github.com/GabrielCardossso/estetica-flow" }
+  ],
+  "stack": [
+    { "label": "Linguagens", "items": [["typescript", "TypeScript"], ["java", "Java"], ["javascript", "JavaScript"], ["csharp", "C#"], ["python", "Python"], ["html5", "HTML"], ["css3", "CSS"]] },
+    { "label": "Front-end", "items": [["react", "React"], ["nextjs", "Next.js"], ["vitejs", "Vite"], ["tailwindcss", "Tailwind CSS"]] },
+    { "label": "Back-end", "items": [["nodejs", "Node.js"], ["nestjs", "NestJS"], ["spring", "Spring Boot"], ["dotnetcore", ".NET"]] },
+    { "label": "Dados", "items": [["postgresql", "PostgreSQL"], ["supabase", "Supabase"], ["sqlite", "SQLite"]] },
+    { "label": "Ferramentas", "items": [["git", "Git"], ["github", "GitHub"], ["docker", "Docker"], ["maven", "Maven"], ["vitest", "Vitest"], ["powershell", "PowerShell"], ["vscode", "VS Code"]] },
+    { "label": "IA", "items": [["openai-dark", "ChatGPT"], ["claude", "Claude"]] }
+  ],
+  "contacts": [
+    { "name": "gmail", "label": "Gmail", "url": "mailto:gabrielcardossso@gmail.com" },
+    { "name": "linkedin", "label": "LinkedIn", "url": "https://www.linkedin.com/in/gabrielcardossso/" },
+    { "name": "instagram", "label": "Instagram", "url": "https://instagram.com/gabrielcrdsss" },
+    { "name": "whatsapp", "label": "WhatsApp", "url": "https://wa.me/5548991746960" }
+  ]
 }

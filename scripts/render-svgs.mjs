@@ -1,21 +1,23 @@
 #!/usr/bin/env node
 /**
- * Gera os SVGs animados do perfil (identidade "Terminal Pixel": tema de terminal em laranja, com
- * letreiros em pixel art) a partir de profile.config.json, assets/stats.json e assets/streak.json.
+ * Gera todas as peças do perfil (identidade "Terminal Pixel": cada seção é uma janela de terminal
+ * escura com detalhes em laranja e letreiros em pixel art) a partir de profile.config.json,
+ * assets/stats.json e assets/streak.json.
  *
- * O GitHub exibe SVGs do README como <img>: sem JavaScript e sem fontes externas. Por isso tudo é
- * SMIL + fontes do sistema, os letreiros são desenhados pixel a pixel e larguras críticas usam
- * textLength. Cada animação tem valor-base final, então renderizadores sem animação mostram a peça
- * completa.
+ * O GitHub exibe SVGs do README como <img>: sem JavaScript, sem fontes externas e sem carregar
+ * imagens de fora. Por isso tudo é SMIL + fontes do sistema, os letreiros são desenhados pixel a
+ * pixel e os logos de assets/logos entram embutidos como data URI. Cada animação tem valor-base
+ * final, então renderizadores sem animação mostram a peça completa.
  */
 import { existsSync, readFileSync, writeFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
+const ASSETS = join(ROOT, 'assets');
 const config = JSON.parse(readFileSync(join(ROOT, 'profile.config.json'), 'utf8'));
-const stats = JSON.parse(readFileSync(join(ROOT, 'assets', 'stats.json'), 'utf8'));
-const streakFile = join(ROOT, 'assets', 'streak.json');
+const stats = JSON.parse(readFileSync(join(ASSETS, 'stats.json'), 'utf8'));
+const streakFile = join(ASSETS, 'streak.json');
 const streak = existsSync(streakFile) ? JSON.parse(readFileSync(streakFile, 'utf8')) : null;
 
 const C = {
@@ -34,6 +36,7 @@ const C = {
 };
 const MONO = "'JetBrains Mono', 'Cascadia Code', 'Fira Code', Consolas, 'DejaVu Sans Mono', 'Courier New', monospace";
 const MONO_RATIO = 0.6; // largura de um caractere monoespaçado em relação ao font-size
+const WIDTH = 1200;
 
 const integer = new Intl.NumberFormat('pt-BR');
 const esc = (text) => String(text).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
@@ -43,6 +46,9 @@ const monoWidth = (text, size) => round(chars(text) * size * MONO_RATIO);
 const shortDate = (iso) => `${iso.slice(8, 10)}/${iso.slice(5, 7)}`;
 const fullDate = (iso) => `${shortDate(iso)}/${iso.slice(0, 4)}`;
 const plural = (n, one, many) => `${n} ${n === 1 ? one : many}`;
+const save = (file, svg) => writeFileSync(join(ASSETS, file), svg);
+
+const logo = (name) => `data:image/svg+xml;base64,${readFileSync(join(ASSETS, 'logos', `${name}.svg`)).toString('base64')}`;
 
 /* ---------- fonte pixel 5x7 ---------- */
 
@@ -108,7 +114,7 @@ function pixelText(text, { x, y, size, color = C.accent, shadow = C.accentDeep, 
   const cells = (fill, dx) =>
     pixels.map(([cx, cy]) => `<rect x="${x + cx * size + dx}" y="${y + cy * size + dx}" width="${size - gap}" height="${size - gap}" fill="${fill}"/>`).join('');
   const offset = Math.max(2, Math.round(size / 3));
-  const art = `<g fill="${shadow}">${cells(shadow, offset)}</g><g>${cells(color, 0)}</g>`;
+  const art = `<g>${cells(shadow, offset)}</g><g>${cells(color, 0)}</g>`;
   if (!reveal) return art;
 
   const full = columns * size + offset;
@@ -121,10 +127,12 @@ function pixelText(text, { x, y, size, color = C.accent, shadow = C.accentDeep, 
 
 /* ---------- janela de terminal ---------- */
 
+const BAR = 40; // altura da barra de título
+
 function frame(width, height, { title, desc, bar }, body) {
   const titleBar = bar
-    ? `<rect width="${width}" height="40" fill="${C.bar}"/>
-<rect y="40" width="${width}" height="1" fill="${C.border}"/>
+    ? `<rect width="${width}" height="${BAR}" fill="${C.bar}"/>
+<rect y="${BAR}" width="${width}" height="1" fill="${C.border}"/>
 <rect x="20" y="14" width="12" height="12" fill="#e5534b"/>
 <rect x="40" y="14" width="12" height="12" fill="#e0a43b"/>
 <rect x="60" y="14" width="12" height="12" fill="#5fb85f"/>
@@ -139,10 +147,6 @@ text{shape-rendering:auto}
 </style>
 <defs>
 <pattern id="grid" width="32" height="32" patternUnits="userSpaceOnUse"><rect width="2" height="2" fill="#ffffff" opacity=".06"/></pattern>
-<linearGradient id="shine" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="640" y2="0" spreadMethod="repeat">
-<stop offset="0" stop-color="${C.accent}"/><stop offset=".3" stop-color="#f2a07f"/><stop offset=".5" stop-color="#ffe6d8"/><stop offset=".7" stop-color="#f2a07f"/><stop offset="1" stop-color="${C.accent}"/>
-<animateTransform attributeName="gradientTransform" type="translate" from="0 0" to="640 0" dur="6s" repeatCount="indefinite"/>
-</linearGradient>
 <pattern id="scan" width="4" height="4" patternUnits="userSpaceOnUse"><rect width="4" height="1" fill="#000" opacity=".22"/></pattern>
 <clipPath id="card"><rect width="${width}" height="${height}" rx="10"/></clipPath>
 </defs>
@@ -156,6 +160,57 @@ ${body}
 <rect x=".5" y=".5" width="${width - 1}" height="${height - 1}" rx="9.5" fill="none" stroke="${C.border}"/>
 </svg>
 `;
+}
+
+// Título de seção dentro da janela: quadradinho laranja + texto, como na streak.
+function heading(x, y, text) {
+  return `<rect x="${x}" y="${y - 10}" width="10" height="10" fill="${C.accent}"/>
+<text x="${x + 22}" y="${y}" class="mono" font-size="18" font-weight="700" fill="${C.ink}">${esc(text)}</text>`;
+}
+
+const CELL = 10;
+const CELL_GAP = 3;
+
+// Barra de blocos: as células acendem em sequência, como uma barra de progresso de terminal.
+function cellBar(filled, total, { x, y, begin, color = C.accent }) {
+  return Array.from({ length: total }, (_, i) => {
+    const cx = x + i * (CELL + CELL_GAP);
+    if (i >= filled) return `<rect x="${cx}" y="${y}" width="${CELL}" height="${CELL + 4}" fill="${C.cell}"/>`;
+    const at = round(begin + i * 0.025);
+    return `<rect x="${cx}" y="${y}" width="${CELL}" height="${CELL + 4}" fill="${color}"><animate attributeName="fill" values="${C.cell};${C.cell};${color}" keyTimes="0;${(at / (at + 0.05)).toFixed(3)};1" dur="${round(at + 0.05)}s" fill="freeze"/></rect>`;
+  }).join('');
+}
+
+// Texto com **negrito** quebrado em linhas de até `max` caracteres.
+function wrap(text, max) {
+  const words = text
+    .split(/(\*\*[^*]+\*\*)/)
+    .filter(Boolean)
+    .flatMap((part) => {
+      const bold = part.startsWith('**');
+      return part.replace(/\*\*/g, '').split(/\s+/).filter(Boolean).map((word) => ({ word, bold }));
+    });
+  const lines = [[]];
+  let length = 0;
+  for (const token of words) {
+    if (length && length + 1 + chars(token.word) > max) {
+      lines.push([]);
+      length = 0;
+    }
+    lines.at(-1).push(token);
+    length += (length ? 1 : 0) + chars(token.word);
+  }
+  return lines;
+}
+
+function richLine(tokens, { x, y, size, color = C.soft }) {
+  const spans = tokens
+    .map(({ word, bold }, i) => {
+      const text = `${i ? ' ' : ''}${word}`;
+      return bold ? `<tspan font-weight="700" fill="${C.ink}">${esc(text)}</tspan>` : esc(text);
+    })
+    .join('');
+  return `<text x="${x}" y="${y}" class="mono" font-size="${size}" fill="${color}" xml:space="preserve">${spans}</text>`;
 }
 
 /* ---------- header ---------- */
@@ -198,144 +253,148 @@ function typing(phrases, { x, y, size }) {
   return [...lines, cursor].join('\n');
 }
 
-// PRNG com semente: as partículas mudam de lugar só quando o código muda, não a cada geração.
-function random(seed) {
-  return () => {
-    seed = (seed + 0x6d2b79f5) | 0;
-    let t = Math.imul(seed ^ (seed >>> 15), 1 | seed);
-    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
-    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
-  };
-}
-
-// Trilha em ângulo reto com um bloco de luz correndo até um nó quadrado.
-function trace(points, dur, begin) {
-  const d = `M${points.map(([x, y]) => `${x} ${y}`).join(' L')}`;
-  const length = points.slice(1).reduce((sum, [x, y], i) => sum + Math.abs(x - points[i][0]) + Math.abs(y - points[i][1]), 0);
-  const pulse = 40;
-  const [x, y] = points.at(-1);
-  return `<path d="${d}" fill="none" stroke="${C.cell}" stroke-width="4" stroke-linecap="square"/>
-<path d="${d}" fill="none" stroke="${C.accent}" stroke-width="4" stroke-linecap="butt" stroke-dasharray="${pulse} ${length + pulse}" stroke-dashoffset="${pulse}"><animate attributeName="stroke-dashoffset" values="${pulse};${-length}" dur="${dur}s" begin="${begin}s" repeatCount="indefinite"/></path>
-<rect x="${x - 6}" y="${y - 6}" width="12" height="12" fill="${C.bg}" stroke="${C.accent}" stroke-width="2"/>
-<rect x="${x - 2}" y="${y - 2}" width="4" height="4" fill="${C.flame}" opacity=".25"><animate attributeName="opacity" values=".25;.25;1;.25" keyTimes="0;.8;.92;1" calcMode="discrete" dur="${dur}s" begin="${begin}s" repeatCount="indefinite"/></rect>`;
-}
-
-// Trilhas do lado esquerdo e o espelho delas no direito, com ritmos diferentes.
-function circuit(leftTraces, width, seed) {
-  const rnd = random(seed);
-  const mirror = (points) => points.map(([x, y]) => [width - x, y]);
-  return [...leftTraces, ...leftTraces.map(mirror)]
-    .map((points) => {
-      const dur = round(3 + rnd() * 3);
-      return trace(points, dur, round(-rnd() * dur));
-    })
-    .join('\n');
-}
-
-// Faíscas quadradas subindo em degraus de pixel.
-function particles(count, width, height, seed) {
-  const rnd = random(seed);
-  return Array.from({ length: count }, () => {
-    const x = Math.round(20 + rnd() * (width - 40));
-    const y = Math.round(60 + rnd() * (height - 100));
-    const dur = round(4 + rnd() * 5);
-    const begin = round(-rnd() * dur);
-    const size = rnd() > 0.6 ? 4 : 3;
-    const ys = Array.from({ length: 9 }, (_, i) => y - i * 5).join(';');
-    return `<rect x="${x}" y="${y}" width="${size}" height="${size}" fill="${C.accent}" opacity="0"><animate attributeName="y" values="${ys}" calcMode="discrete" dur="${dur}s" begin="${begin}s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;.8;.8;0" calcMode="discrete" dur="${dur}s" begin="${begin}s" repeatCount="indefinite"/></rect>`;
-  }).join('\n');
-}
-
-// Linha do horizonte com um bloco varrendo de ponta a ponta.
-function horizon(y, width) {
-  return `<rect x="40" y="${y}" width="${width - 80}" height="2" fill="${C.border}"/>
-<rect x="-60" y="${y - 1}" width="60" height="4" fill="${C.accent}"><animate attributeName="x" values="-60;${width}" dur="7s" repeatCount="indefinite"/></rect>`;
-}
-
 function header() {
-  const width = 1200;
-  const height = 370;
-  const left = [
-    [[-10, 58], [96, 58], [96, 88], [196, 88]],
-    [[-10, 136], [54, 136], [54, 166], [160, 166]],
-    [[-10, 214], [120, 214], [120, 244], [258, 244]],
-    [[-10, 300], [80, 300], [80, 270], [178, 270]],
-    [[44, 380], [44, 316], [262, 316]],
-  ];
-  const status = `ONLINE · ${config.location.toUpperCase()}`;
-  const statusWidth = monoWidth(status, 14);
-  const pill = statusWidth + 52;
-  const role = config.role.toUpperCase();
+  const height = 330;
   const name = config.name.toUpperCase();
-  const size = Math.min(9, Math.floor(820 / (chars(name) * 6 - 1)));
-  const nameX = Math.round((width - pixelWidth(name, size)) / 2);
+  const size = Math.min(11, Math.floor(980 / (chars(name) * 6 - 1)));
+  const nameX = Math.round((WIDTH - pixelWidth(name, size)) / 2);
+  const nameY = 100;
+  const status = `online · ${config.location}`;
+  const statusX = Math.round(WIDTH / 2 - (monoWidth(status, 14) + 18) / 2);
+  const role = `── ${config.role} ──`;
+  const roleY = nameY + 7 * size + 40;
+  const box = 760;
+  const boxX = (WIDTH - box) / 2;
 
-  const body = `${circuit(left, width, 7)}
-${particles(26, width, height, 42)}
-<g transform="translate(${Math.round(600 - pill / 2)} 34)">
-<rect x=".5" y=".5" width="${pill}" height="32" rx="4" fill="${C.bar}" stroke="${C.border}"/>
-<rect x="15" y="12" width="9" height="9" fill="${C.green}"><animate attributeName="opacity" values="1;.25" calcMode="discrete" dur="1.6s" repeatCount="indefinite"/></rect>
-<text x="34" y="21" class="mono" font-size="14" fill="${C.soft}" textLength="${statusWidth}">${esc(status)}</text>
-</g>
-${pixelText(name, { x: nameX, y: 98, size, color: 'url(#shine)' })}
-<text x="300" y="214" class="mono" font-size="17" font-weight="700" textLength="600" fill="${C.soft}">${esc(role)}</text>
-<rect x="470" y="234" width="260" height="2" fill="${C.border}"/>
-<rect x="470" y="233" width="40" height="4" fill="${C.accent}"><animate attributeName="x" values="470;690;470" dur="5s" repeatCount="indefinite"/></rect>
-<rect x="310.5" y="254.5" width="580" height="52" rx="4" fill="#121110" stroke="${C.dim}"/>
-<text x="328" y="286" class="mono" font-size="18" fill="${C.accent}">&gt;</text>
-${typing(config.typing, { x: 352, y: 286, size: 18 })}
-${horizon(340, width)}`;
+  const body = `<rect x="${statusX}" y="65" width="9" height="9" fill="${C.green}"><animate attributeName="opacity" values="1;.2" calcMode="discrete" dur="1.2s" repeatCount="indefinite"/></rect>
+<text x="${statusX + 18}" y="75" class="mono" font-size="14" fill="${C.green}">${esc(status)}</text>
+${pixelText(name, { x: nameX, y: nameY, size, reveal: 1.6, id: 'name' })}
+<text x="${WIDTH / 2}" y="${roleY}" text-anchor="middle" class="mono" font-size="17" fill="${C.soft}" textLength="${monoWidth(role, 17)}">${esc(role)}</text>
+<rect x="${boxX + 0.5}" y="${roleY + 22.5}" width="${box}" height="48" rx="6" fill="#121110" stroke="${C.dim}"/>
+<text x="${boxX + 20}" y="${roleY + 53}" class="mono" font-size="18" fill="${C.accent}">&gt;</text>
+${typing(config.typing, { x: boxX + 44, y: roleY + 53, size: 18 })}`;
 
-  return frame(width, height, {
+  return frame(WIDTH, height, {
     title: `${config.name} — ${config.role}`,
     desc: config.typing.join(' · '),
+    bar: `${config.user.toLowerCase()}@github: ~/perfil`,
   }, body);
 }
 
-/* ---------- dashboard ---------- */
+/* ---------- sobre mim ---------- */
 
-const CELL = 10;
-const CELL_GAP = 3;
+function about() {
+  const size = 16;
+  const lineHeight = 27;
+  const paragraph = wrap(config.about, Math.floor((WIDTH - 140) / (size * MONO_RATIO)));
+  const top = 122;
+  const listTop = top + paragraph.length * lineHeight + 34;
+  const height = listTop + (config.highlights.length - 1) * 30 + 36;
 
-// Barra de blocos: as células acendem em sequência, como uma barra de progresso de terminal.
-function cellBar(filled, total, { x, y, begin, color = C.accent }) {
-  return Array.from({ length: total }, (_, i) => {
-    const cx = x + i * (CELL + CELL_GAP);
-    if (i >= filled) return `<rect x="${cx}" y="${y}" width="${CELL}" height="${CELL + 4}" fill="${C.cell}"/>`;
-    const at = round(begin + i * 0.025);
-    return `<rect x="${cx}" y="${y}" width="${CELL}" height="${CELL + 4}" fill="${color}"><animate attributeName="fill" values="${C.cell};${C.cell};${color}" keyTimes="0;${(at / (at + 0.05)).toFixed(3)};1" dur="${round(at + 0.05)}s" fill="freeze"/></rect>`;
-  }).join('');
+  const text = paragraph.map((tokens, i) => richLine(tokens, { x: 70, y: top + i * lineHeight, size })).join('\n');
+  const list = config.highlights
+    .map((item, i) => {
+      const y = listTop + i * 30;
+      return `<rect x="72" y="${y - 9}" width="7" height="7" fill="${C.accent}"/>
+${richLine(wrap(item, 200)[0], { x: 92, y, size: 15 })}`;
+    })
+    .join('\n');
+
+  const body = `${heading(48, 88, 'Sobre mim')}
+${text}
+<rect x="48" y="${listTop - 30}" width="${WIDTH - 96}" height="1" fill="${C.border}"/>
+${list}`;
+
+  return frame(WIDTH, height, {
+    title: `Sobre ${config.name}`,
+    desc: config.about.replace(/\*\*/g, ''),
+    bar: 'sobre-mim.md',
+  }, body);
 }
 
+// Botão de link (projetos e contatos): janelinha com ícone (ou quadradinho), nome e seta.
+function tile({ width, height, title, subtitle, icon }) {
+  const titleY = subtitle ? height / 2 - 4 : height / 2 + 6;
+  const marker = icon
+    ? `<image href="${logo(icon)}" x="22" y="${height / 2 - 12}" width="24" height="24"/>`
+    : `<rect x="24" y="${titleY - 10}" width="10" height="10" fill="${C.accent}"/>`;
+  const textX = icon ? 60 : 46;
+  const body = `${marker}
+<text x="${textX}" y="${titleY}" class="mono" font-size="17" font-weight="700" fill="${C.ink}">${esc(title)}</text>
+${subtitle ? `<text x="${textX}" y="${titleY + 24}" class="mono" font-size="14" fill="${C.muted}">${esc(subtitle)}</text>` : ''}
+<text x="${width - 22}" y="${height / 2 + 6}" text-anchor="end" class="mono" font-size="18" fill="${C.accent}">↗</text>`;
+  return frame(width, height, { title, desc: subtitle ?? title }, body);
+}
+
+/* ---------- stack ---------- */
+
+function stack() {
+  const tileSize = 48;
+  const step = tileSize + 12;
+  const rowHeight = 64;
+  const top = 116;
+  const half = Math.ceil(config.stack.length / 2);
+  const columns = [config.stack.slice(0, half), config.stack.slice(half)];
+  const height = top + half * rowHeight + 12;
+  let order = 0;
+
+  const rows = columns.flatMap((groups, col) => {
+    const baseX = 48 + col * 576;
+    return groups.map((group, row) => {
+      const y = top + row * rowHeight;
+      const tiles = group.items.map(([file, label], i) => {
+        const x = baseX + 140 + i * step;
+        const begin = round(0.2 + order++ * 0.05);
+        return `<g><animate attributeName="opacity" values="0;0;1" keyTimes="0;${(begin / (begin + 0.01)).toFixed(3)};1" dur="${round(begin + 0.01)}s" fill="freeze"/>
+<rect x="${x}" y="${y}" width="${tileSize}" height="${tileSize}" rx="4" fill="${C.cell}"/>
+<image href="${logo(file)}" x="${x + 9}" y="${y + 9}" width="30" height="30"/>
+</g>`;
+      });
+      return `<text x="${baseX}" y="${y + 30}" class="mono" font-size="15" font-weight="700" fill="${C.soft}">${esc(group.label)}</text>
+${tiles.join('\n')}`;
+    });
+  });
+
+  const body = `${heading(48, 88, 'Stack')}
+<rect x="600" y="${top}" width="1" height="${half * rowHeight - 16}" fill="${C.border}"/>
+${rows.join('\n')}`;
+
+  return frame(WIDTH, height, {
+    title: 'Stack',
+    desc: config.stack.map((group) => `${group.label}: ${group.items.map(([, label]) => label).join(', ')}`).join('; '),
+    bar: 'stack — ferramentas do dia a dia',
+  }, body);
+}
+
+/* ---------- code dna ---------- */
+
 function dashboard(top) {
-  const width = 1200;
   const ranked = stats.languages.slice(0, top);
-  const firstRow = 132;
-  const rowHeight = 56;
-  const height = firstRow + (ranked.length - 1) * rowHeight + 52;
+  const firstRow = 150;
+  const rowHeight = 50;
+  const height = firstRow + ranked.length * rowHeight + 20;
   const cells = 52;
   const max = ranked[0].lines;
+  const summary = `${integer.format(stats.commits)} commits · ${plural(stats.repositories, 'repositório', 'repositórios')} · ${integer.format(stats.linesWritten)} linhas`;
 
   const rows = ranked.map((language, i) => {
     const y = firstRow + i * rowHeight;
     const filled = Math.max(1, Math.round((language.lines / max) * cells));
-    return `<text x="48" y="${y + 6}" class="mono" font-size="17" font-weight="700" fill="${C.accent}">#${i + 1}</text>
-<text x="96" y="${y + 7}" class="mono" font-size="19" font-weight="700" fill="${C.ink}">${esc(language.name)}</text>
-${cellBar(filled, cells, { x: 300, y: y - 7, begin: 0.3 + i * 0.25 })}
-<text x="1152" y="${y + 6}" text-anchor="end" class="mono" font-size="19" font-weight="700" fill="${C.ink}">${esc(integer.format(language.lines))}</text>`;
+    return `<text x="70" y="${y + 12}" class="mono" font-size="16" font-weight="700" fill="${i === 0 ? C.accent : C.muted}">#${i + 1}</text>
+<text x="118" y="${y + 12}" class="mono" font-size="18" fill="${C.ink}">${esc(language.name)}</text>
+${cellBar(filled, cells, { x: 320, y: y - 2, begin: 0.3 + i * 0.25 })}
+<text x="1152" y="${y + 12}" text-anchor="end" class="mono" font-size="18" font-weight="700" fill="${C.ink}">${esc(integer.format(language.lines))}</text>`;
   });
 
-  const body = `${particles(10, width, height, 9)}
-<rect x="48" y="50" width="20" height="20" fill="${C.accent}"/>
-<rect x="52" y="54" width="12" height="12" fill="${C.flame}"><animate attributeName="opacity" values="1;.2" calcMode="discrete" dur="1.4s" repeatCount="indefinite"/></rect>
-<text x="82" y="70" class="mono" font-size="25" font-weight="700" fill="${C.ink}">Top ${ranked.length} linguagens</text>
-<text x="1152" y="70" text-anchor="end" class="mono" font-size="14" fill="${C.muted}">linhas escritas</text>
-<rect x="48" y="92" width="1104" height="2" fill="${C.border}"/>
+  const body = `${heading(48, 88, `Top ${ranked.length} linguagens`)}
+<text x="1152" y="88" text-anchor="end" class="mono" font-size="14" fill="${C.muted}">linhas escritas</text>
+<text x="70" y="116" class="mono" font-size="14" fill="${C.muted}">⎿  linhas que escrevi nos meus commits · ${esc(summary)}</text>
 ${rows.join('\n')}`;
 
-  return frame(width, height, {
+  return frame(WIDTH, height, {
     title: `Top ${ranked.length} linguagens de ${config.name}`,
     desc: ranked.map((l, i) => `${i + 1}. ${l.name}: ${integer.format(l.lines)} linhas`).join('; '),
+    bar: 'code-dna — linhas escritas por linguagem',
   }, body);
 }
 
@@ -355,7 +414,6 @@ function flame(x, y, size, lit) {
 }
 
 function streakCard() {
-  const width = 1200;
   const height = 400;
   const s = streak ?? { current: { days: 0 }, longest: [], activeDays: 0, recent: [], activeToday: false };
   const current = s.current.days;
@@ -370,10 +428,9 @@ function streakCard() {
       ? [`✓ hoje já contou · desde ${shortDate(s.current.start)}`, C.green]
       : [`! hoje ainda sem atividade — até 23:59 pra não zerar`, C.flame];
 
-  const left = `<rect x="48" y="78" width="10" height="10" fill="${C.accent}"/>
-<text x="70" y="88" class="mono" font-size="18" font-weight="700" fill="${C.ink}">Streak atual</text>
+  const left = `${heading(48, 88, 'Streak atual')}
 ${flame(70, 124, 11, current > 0)}
-${pixelText(digits, { x: 170, y: 126, size: digitSize, reveal: 0 })}
+${pixelText(digits, { x: 170, y: 126, size: digitSize })}
 <text x="${170 + pixelWidth(digits, digitSize) + 24}" y="${126 + 7 * digitSize}" class="mono" font-size="22" fill="${C.soft}">${current === 1 ? 'dia' : 'dias'}</text>
 ${isRecord ? `<text x="${170 + pixelWidth(digits, digitSize) + 24}" y="${126 + 7 * digitSize - 36}" class="mono" font-size="14" font-weight="700" fill="${C.flame}">★ recorde!<animate attributeName="opacity" values="1;.3;1" calcMode="discrete" dur="1s" repeatCount="indefinite"/></text>` : ''}
 <text x="70" y="248" class="mono" font-size="14" fill="${status[1]}">${esc(status[0])}</text>`;
@@ -387,12 +444,11 @@ ${isRecord ? `<text x="${170 + pixelWidth(digits, digitSize) + 24}" y="${126 + 7
         return `<text x="${listX + 22}" y="${y + 12}" class="mono" font-size="16" font-weight="700" fill="${color}">#${i + 1}</text>
 ${cellBar(bar, 14, { x: listX + 70, y: y - 2, begin: 0.3 + i * 0.2, color: i === 0 ? C.accent : C.soft })}
 <text x="${listX + 270}" y="${y + 12}" class="mono" font-size="17" font-weight="700" fill="${C.ink}">${esc(plural(run.days, 'dia', 'dias'))}</text>
-<text x="${width - 48}" y="${y + 12}" text-anchor="end" class="mono" font-size="14" fill="${C.muted}">${esc(`${shortDate(run.start)} → ${fullDate(run.end)}`)}</text>`;
+<text x="${WIDTH - 48}" y="${y + 12}" text-anchor="end" class="mono" font-size="14" fill="${C.muted}">${esc(`${shortDate(run.start)} → ${fullDate(run.end)}`)}</text>`;
       })
     : [`<text x="${listX + 22}" y="140" class="mono" font-size="14" fill="${C.muted}">ainda sem histórico</text>`];
 
-  const right = `<rect x="${listX}" y="78" width="10" height="10" fill="${C.accent}"/>
-<text x="${listX + 22}" y="88" class="mono" font-size="18" font-weight="700" fill="${C.ink}">Maiores streaks</text>
+  const right = `${heading(listX, 88, 'Maiores streaks')}
 ${rankRows.join('\n')}`;
 
   const stripY = 300;
@@ -411,41 +467,55 @@ ${rankRows.join('\n')}`;
   const body = `${left}
 <rect x="620" y="70" width="1" height="190" fill="${C.border}"/>
 ${right}
-<rect x="48" y="270" width="${width - 96}" height="1" fill="${C.border}"/>
+<rect x="48" y="270" width="${WIDTH - 96}" height="1" fill="${C.border}"/>
 <text x="48" y="292" class="mono" font-size="13" fill="${C.muted}">últimos 30 dias</text>
-<text x="${width - 48}" y="292" text-anchor="end" class="mono" font-size="13" fill="${C.muted}">${esc(`${plural(s.activeDays, 'dia ativo', 'dias ativos')} no total · vira à meia-noite (Brasília)`)}</text>
+<text x="${WIDTH - 48}" y="292" text-anchor="end" class="mono" font-size="13" fill="${C.muted}">${esc(`${plural(s.activeDays, 'dia ativo', 'dias ativos')} no total · vira à meia-noite (Brasília)`)}</text>
 ${strip}`;
 
-  return frame(width, height, {
+  return frame(WIDTH, height, {
     title: `Streak de atividade de ${config.name}`,
     desc: `Streak atual: ${plural(current, 'dia', 'dias')}. Maior streak: ${plural(record, 'dia', 'dias')}.`,
     bar: 'streak — dias seguidos com atividade no GitHub',
   }, body);
 }
 
-/* ---------- footer ---------- */
+/* ---------- títulos avulsos e rodapé ---------- */
 
-function footer() {
-  const width = 1200;
-  const height = 150;
-  const left = [
-    [[-10, 58], [470, 58]],
-    [[-10, 22], [358, 22], [358, 46], [470, 46]],
-    [[-10, 96], [358, 96], [358, 70], [470, 70]],
-  ];
-  const word = 'OBRIGADO';
-  const size = 4;
-  const message = 'Bora construir algo juntos';
-  const body = `${circuit(left, width, 21)}
-<rect x="470.5" y="34.5" width="259" height="47" rx="4" fill="#121110" stroke="${C.accent}" stroke-width="2"><animate attributeName="stroke-opacity" values="1;.4" calcMode="discrete" dur="1.5s" repeatCount="indefinite"/></rect>
-${pixelText(word, { x: Math.round(600 - pixelWidth(word, size) / 2), y: 44, size, color: 'url(#shine)' })}
-<text x="600" y="126" text-anchor="middle" class="mono" font-size="16" fill="${C.soft}" textLength="${monoWidth(message, 16)}">${esc(message)}</text>`;
-  return frame(width, height, { title: 'Rodapé', desc: message }, body);
+// Barra de título + cabeçalho para seções cujo conteúdo vem logo abaixo (cobrinha, contatos).
+function sectionBar(bar, text, note) {
+  const height = 112;
+  const body = `${heading(48, 88, text)}
+${note ? `<text x="${WIDTH - 48}" y="88" text-anchor="end" class="mono" font-size="14" fill="${C.muted}">${esc(note)}</text>` : ''}`;
+  return frame(WIDTH, height, { title: text, desc: note ?? text, bar }, body);
 }
 
-const top = config.top ?? 5;
-writeFileSync(join(ROOT, 'assets', 'header.svg'), header());
-writeFileSync(join(ROOT, 'assets', 'dashboard.svg'), dashboard(top));
-writeFileSync(join(ROOT, 'assets', 'streak.svg'), streakCard());
-writeFileSync(join(ROOT, 'assets', 'footer.svg'), footer());
+function footer() {
+  const height = 210;
+  const word = 'OBRIGADO';
+  const size = 7;
+  const message = 'Bora construir algo juntos.';
+  const wordY = 96;
+  const messageY = wordY + 7 * size + 44;
+  const body = `<text x="40" y="76" class="mono" font-size="15" fill="${C.accent}">&gt;</text>
+<text x="62" y="76" class="mono" font-size="15" fill="${C.ink}">/exit</text>
+${pixelText(word, { x: Math.round((WIDTH - pixelWidth(word, size)) / 2), y: wordY, size, reveal: 1.2, id: 'bye' })}
+<text x="${WIDTH / 2}" y="${messageY}" text-anchor="middle" class="mono" font-size="16" fill="${C.soft}" textLength="${monoWidth(message, 16)}">${esc(message)}</text>
+<rect x="${round(WIDTH / 2 + monoWidth(message, 16) / 2 + 6)}" y="${messageY - 14}" width="10" height="18" fill="${C.ink}"><animate attributeName="opacity" values="1;0" calcMode="discrete" dur="1s" repeatCount="indefinite"/></rect>`;
+  return frame(WIDTH, height, { title: 'Rodapé', desc: `Obrigado! ${message}`, bar: 'exit' }, body);
+}
+
+save('header.svg', header());
+save('about.svg', about());
+for (const project of config.projects) {
+  save(`project-${project.name}.svg`, tile({ width: 590, height: 92, title: project.name, subtitle: project.description }));
+}
+save('stack.svg', stack());
+save('dashboard.svg', dashboard(config.top ?? 5));
+save('streak.svg', streakCard());
+save('contributions.svg', sectionBar('contribuicoes — último ano', 'Contribuições', 'a cobrinha come os dias com commit'));
+save('contact.svg', sectionBar('contato', 'Contato', 'clique num botão abaixo'));
+for (const contact of config.contacts) {
+  save(`contact-${contact.name}.svg`, tile({ width: 290, height: 64, title: contact.label, icon: contact.name }));
+}
+save('footer.svg', footer());
 console.log('SVGs gerados em assets/.');
