@@ -1,8 +1,8 @@
-<img src="./assets/header.svg" width="100%" alt="Gabriel Cardoso — Estagiário Full Stack na Getel Tecnologia" />
+<img src="./assets/header.svg" width="100%" alt="Terminal pixelado com o nome Gabriel Cardoso — Estagiário Full Stack na Getel Tecnologia" />
 
 <br />
 
-## ◢ Sobre mim
+## ❯ Sobre mim
 
 Estagiário de desenvolvimento **Full Stack** na **Getel Tecnologia**, onde participo da construção de sistemas de gestão de ponta a ponta, do modelo de dados à interface. No back-end, trabalho no dia a dia com **Node.js e NestJS**, além de **Java e Spring Boot**; no front, com **TypeScript, React e Next.js**. Uso IA (**Claude** e **ChatGPT**) como parte do meu fluxo de desenvolvimento. Gosto de software que resolve problema de negócio de verdade: ERPs, CRMs, controle de ponto e estoque.
 
@@ -11,7 +11,7 @@ Estagiário de desenvolvimento **Full Stack** na **Getel Tecnologia**, onde part
 - 🚀 &nbsp;Projeto pessoal: [**estetica-flow**](https://github.com/GabrielCardossso/estetica-flow) (ERP SaaS para estética automotiva)
 - 📍 &nbsp;Tubarão · SC · Brasil
 
-## ◢ Stack
+## ❯ Stack
 
 <table>
   <tr>
@@ -40,24 +40,28 @@ Estagiário de desenvolvimento **Full Stack** na **Getel Tecnologia**, onde part
   </tr>
 </table>
 
-## ◢ Code DNA
+## ❯ Code DNA
 
 <img src="./assets/dashboard.svg" width="100%" alt="Code DNA: top 5 linguagens por linhas que escrevi nos meus commits" />
 
-## ◢ Contribuições
+## ❯ Streak
+
+<img src="./assets/streak.svg" width="100%" alt="Streak de atividade no GitHub: dias seguidos com contribuição e as maiores streaks" />
+
+## ❯ Contribuições
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/GabrielCardossso/GabrielCardossso/output/snake-dark.svg" />
   <img src="https://raw.githubusercontent.com/GabrielCardossso/GabrielCardossso/output/snake-light.svg" width="100%" alt="Cobrinha percorrendo meu gráfico de contribuições" />
 </picture>
 
-## ◢ Contato
+## ❯ Contato
 
 <p>
-  <a href="mailto:gabrielcardossso@gmail.com"><img src="https://img.shields.io/badge/Gmail-041327?style=for-the-badge&logo=gmail&logoColor=22d3ee" alt="Gmail" /></a>
-  <a href="https://www.linkedin.com/in/gabrielcardossso/"><img src="https://img.shields.io/badge/LinkedIn-041327?style=for-the-badge&logo=data%3Aimage%2Fsvg%2Bxml%3Bbase64%2CPHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9JzAgMCAyNCAyNCc%2BPHJlY3Qgd2lkdGg9JzI0JyBoZWlnaHQ9JzI0JyByeD0nNCcgZmlsbD0nIzIyZDNlZScvPjxyZWN0IHg9JzQuNicgeT0nOS40JyB3aWR0aD0nMy40JyBoZWlnaHQ9JzEwLjInIGZpbGw9JyMwNDEzMjcnLz48Y2lyY2xlIGN4PSc2LjMnIGN5PSc1LjknIHI9JzInIGZpbGw9JyMwNDEzMjcnLz48cGF0aCBkPSdNMTAuNCA5LjRoMy4zdjEuNWMuNS0uOSAxLjctMS44IDMuNS0xLjggMyAwIDMuOSAxLjkgMy45IDQuN3Y1LjhoLTMuNHYtNS4xYzAtMS4zLS4zLTIuNS0xLjctMi41cy0yLjIgMS4xLTIuMiAyLjZ2NWgtMy40eicgZmlsbD0nIzA0MTMyNycvPjwvc3ZnPg%3D%3D" alt="LinkedIn" /></a>
-  <a href="https://instagram.com/gabrielcrdsss"><img src="https://img.shields.io/badge/Instagram-041327?style=for-the-badge&logo=instagram&logoColor=22d3ee" alt="Instagram" /></a>
-  <a href="https://wa.me/5548991746960"><img src="https://img.shields.io/badge/WhatsApp-041327?style=for-the-badge&logo=whatsapp&logoColor=22d3ee" alt="WhatsApp" /></a>
+  <a href="mailto:gabrielcardossso@gmail.com"><img src="https://img.shields.io/badge/Gmail-191817?style=for-the-badge&logo=gmail&logoColor=d97757" alt="Gmail" /></a>
+  <a href="https://www.linkedin.com/in/gabrielcardossso/"><img src="https://img.shields.io/badge/LinkedIn-191817?style=for-the-badge&logo=data%3Aimage%2Fsvg%2Bxml%3Bbase64%2CPHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9JzAgMCAyNCAyNCc%2BPHJlY3Qgd2lkdGg9JzI0JyBoZWlnaHQ9JzI0JyByeD0nNCcgZmlsbD0nI2Q5Nzc1NycvPjxyZWN0IHg9JzQuNicgeT0nOS40JyB3aWR0aD0nMy40JyBoZWlnaHQ9JzEwLjInIGZpbGw9JyMxOTE4MTcnLz48Y2lyY2xlIGN4PSc2LjMnIGN5PSc1LjknIHI9JzInIGZpbGw9JyMxOTE4MTcnLz48cGF0aCBkPSdNMTAuNCA5LjRoMy4zdjEuNWMuNS0uOSAxLjctMS44IDMuNS0xLjggMyAwIDMuOSAxLjkgMy45IDQuN3Y1LjhoLTMuNHYtNS4xYzAtMS4zLS4zLTIuNS0xLjctMi41cy0yLjIgMS4xLTIuMiAyLjZ2NWgtMy40eicgZmlsbD0nIzE5MTgxNycvPjwvc3ZnPg%3D%3D" alt="LinkedIn" /></a>
+  <a href="https://instagram.com/gabrielcrdsss"><img src="https://img.shields.io/badge/Instagram-191817?style=for-the-badge&logo=instagram&logoColor=d97757" alt="Instagram" /></a>
+  <a href="https://wa.me/5548991746960"><img src="https://img.shields.io/badge/WhatsApp-191817?style=for-the-badge&logo=whatsapp&logoColor=d97757" alt="WhatsApp" /></a>
 </p>
 
 <img src="./assets/footer.svg" width="100%" alt="" />
