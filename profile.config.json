@@ -18,12 +18,12 @@
     "Estagiário Full Stack @ **Getel Tecnologia**",
     "Cursando **Técnico em Desenvolvimento de Sistemas** no SENAC",
     "Projeto do curso: **hora-control** (controle de ponto com Spring Security)",
-    "Projeto pessoal: **estetica-flow** (ERP SaaS para estética automotiva)",
+    "Projeto pessoal: **brilho-flow** (ERP SaaS para estética automotiva)",
     "Tubarão · SC · Brasil"
   ],
   "projects": [
     { "name": "hora-control", "description": "controle de ponto · Spring Security", "url": "https://github.com/GabrielCardossso/hora-control" },
-    { "name": "estetica-flow", "description": "ERP SaaS · estética automotiva", "url": "https://github.com/GabrielCardossso/estetica-flow" }
+    { "name": "brilho-flow", "description": "ERP SaaS · estética automotiva", "url": "https://github.com/GabrielCardossso/brilho-flow" }
   ],
   "stack": [
     { "label": "Linguagens", "items": [["typescript", "TypeScript"], ["java", "Java"], ["javascript", "JavaScript"], ["csharp", "C#"], ["python", "Python"], ["html5", "HTML"], ["css3", "CSS"]] },

@@ -4,7 +4,7 @@
 
 <p>
   <a href="https://github.com/GabrielCardossso/hora-control"><img src="./assets/project-hora-control.svg" width="49%" alt="hora-control: controle de ponto com Spring Security" /></a>
-  <a href="https://github.com/GabrielCardossso/estetica-flow"><img src="./assets/project-estetica-flow.svg" width="49%" alt="estetica-flow: ERP SaaS para estética automotiva" /></a>
+  <a href="https://github.com/GabrielCardossso/brilho-flow"><img src="./assets/project-brilho-flow.svg" width="49%" alt="brilho-flow: ERP SaaS para estética automotiva" /></a>
 </p>
 
 <img src="./assets/stack.svg" width="100%" alt="Stack: TypeScript, Java, JavaScript, C#, Python, HTML, CSS, React, Next.js, Vite, Tailwind CSS, Node.js, NestJS, Spring Boot, .NET, PostgreSQL, Supabase, SQLite, Git, GitHub, Docker, Maven, Vitest, PowerShell, VS Code, ChatGPT e Claude" />
