@@ -1,6 +1,6 @@
 {
-  "today": "2026-11-18",
-  "activeToday": true,
+  "today": "2026-11-19",
+  "activeToday": false,
   "current": {
     "start": "2026-11-16",
     "end": "2026-11-18",
@@ -25,10 +25,6 @@
   ],
   "activeDays": 46,
   "recent": [
-    {
-      "date": "2026-10-20",
-      "active": false
-    },
     {
       "date": "2026-10-21",
       "active": false
@@ -144,6 +140,10 @@
     {
       "date": "2026-11-18",
       "active": true
+    },
+    {
+      "date": "2026-11-19",
+      "active": false
     }
   ]
 }
