@@ -1,12 +1,17 @@
 {
   "today": "2026-11-19",
-  "activeToday": false,
+  "activeToday": true,
   "current": {
     "start": "2026-11-16",
-    "end": "2026-11-18",
-    "days": 3
+    "end": "2026-11-19",
+    "days": 4
   },
   "longest": [
+    {
+      "start": "2026-11-16",
+      "end": "2026-11-19",
+      "days": 4
+    },
     {
       "start": "2026-11-09",
       "end": "2026-11-12",
@@ -16,14 +21,9 @@
       "start": "2026-05-26",
       "end": "2026-05-29",
       "days": 4
-    },
-    {
-      "start": "2026-11-16",
-      "end": "2026-11-18",
-      "days": 3
     }
   ],
-  "activeDays": 46,
+  "activeDays": 47,
   "recent": [
     {
       "date": "2026-10-21",
@@ -143,7 +143,7 @@
     },
     {
       "date": "2026-11-19",
-      "active": false
+      "active": true
     }
   ]
 }
