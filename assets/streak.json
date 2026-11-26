@@ -1,10 +1,10 @@
 {
-  "today": "2026-11-25",
+  "today": "2026-11-26",
   "activeToday": false,
   "current": {
     "start": "2026-11-23",
-    "end": "2026-11-24",
-    "days": 2
+    "end": "2026-11-25",
+    "days": 3
   },
   "longest": [
     {
@@ -23,12 +23,8 @@
       "days": 4
     }
   ],
-  "activeDays": 70,
+  "activeDays": 71,
   "recent": [
-    {
-      "date": "2026-10-27",
-      "active": true
-    },
     {
       "date": "2026-10-28",
       "active": true
@@ -143,6 +139,10 @@
     },
     {
       "date": "2026-11-25",
+      "active": true
+    },
+    {
+      "date": "2026-11-26",
       "active": false
     }
   ]
